@@ -12,8 +12,8 @@ require.config({
         'coders/databind/bdDecoder'
     ],
     paths: {
-        'coders': '../node_modules/stonewalljs/node_modules/richtemplate/dev/coders',
-        'templating': '../node_modules/stonewalljs/node_modules/richtemplate/dev/templating',
+        'coders': '../node_modules/richtemplate/dev/coders',
+        'templating': '../node_modules/richtemplate/dev/templating',
         'widget': '../node_modules/stonewalljs/dev/widget',
         'watch': '../bower_components/watch/src/watch'
     }
