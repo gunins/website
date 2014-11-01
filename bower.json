@@ -1,0 +1,17 @@
+{
+  "name": "testapp",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gunins/skeleton"
+  },
+  "private":true,
+  "dependencies": {
+    "requirejs": "^2.1.15",
+    "bootstrap": "latest",
+    "watch": "latest"
+  },
+  "ignore":[
+    "src"
+  ]
+}
