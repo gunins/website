@@ -8,7 +8,7 @@ You need to install [**nodejs**](http://nodejs.org/) and **grunt CLI** globally 
 
 Clone repo `git clone https://github.com/gunins/skeleton.git`
 
-After run commands:
+After run commands from directory:
 
     npm install
     bower install
