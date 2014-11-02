@@ -1,5 +1,7 @@
 # Skeleton for "Stone Wall" Framework
 
+More info ["Stone Wall"](https://github.com/gunins/stonewall)
+
 ### Prerequisites
 
 You need to install [**nodejs**](http://nodejs.org/) and **grunt CLI** globally `npm -g install grunt-cli`
