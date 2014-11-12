@@ -3,12 +3,22 @@
         <div class="panel panel-default">
             <div class="panel-heading">Basic Example</div>
             <div class="panel-body">
-                <cp-val data-bind="cmp" src="widget/parser!cmp/Cmp">
-                    <pl-header>Header From Parent Container</pl-header>
-                    <pl-body>
-                        <p>Body From Parent Container</p>
-                    </pl-body>
-                </cp-val>
+                <p><a href="#/linka">Link A</a>
+                    <a href="#/linkb">Link B</a>
+                </p>
+                <rt route="/linka">
+                    <h4>Static link</h4>
+
+                    <p>There is static content</p>
+                </rt>
+                <rt route="/linkb">
+                    <cp-val data-bind="cmp" src="widget/parser!cmp/Cmp">
+                        <pl-header>This is dynamic require content</pl-header>
+                        <pl-body>
+                            <p>Body From Parent Container</p>
+                        </pl-body>
+                    </cp-val>
+                </rt>
             </div>
         </div>
     </div>

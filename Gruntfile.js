@@ -3,12 +3,14 @@ module.exports = function (grunt) {
         templateCoders: [
             'coders/component/CpCoder',
             'coders/placeholders/plCoder',
-            'coders/databind/bdCoder'
+            'coders/databind/bdCoder',
+            'coders/router/RouterCoder'
         ],
         templateDecoders: [
             'coders/component/CpDecoder',
             'coders/placeholders/plDecoder',
-            'coders/databind/bdDecoder'
+            'coders/databind/bdDecoder',
+            'coders/router/RouterDecoder'
         ],
         exclude: [
             'coders/component/CpCoder',
@@ -22,13 +24,14 @@ module.exports = function (grunt) {
             'templating/Decoder',
 
         ]
-    }
+    };
     var appPaths = {
         coders: '../node_modules/richtemplate/dev/coders',
         templating: '../node_modules/richtemplate/dev/templating',
         htmlparser2: '../node_modules/richtemplate/dev/htmlparser2',
         'widget': '../node_modules/stonewalljs/dev/widget',
-        'widget/utils': 'widget/App'
+        'widget/utils': 'widget/App',
+        'router': '../bower_components/urlmanager/dist/prod/router'
     };
     var stubModules = ['templating/parser', 'widget/parser'];
 
@@ -52,7 +55,7 @@ module.exports = function (grunt) {
 
                 }
             }
-        },
+        }
     });
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
