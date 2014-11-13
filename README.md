@@ -18,6 +18,9 @@ After run commands from directory:
 
     npm install
 
+And you can see app on [http://localhost:5050/index.html](http://localhost:5050/index.html)
+
+
 To start static server again
 
     npm start
@@ -26,6 +29,5 @@ To build package
 
     grunt
 
-And you can see app on [http://localhost:5050/index.html](http://localhost:5050/index.html)
 
 To compile app run `grunt`
