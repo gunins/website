@@ -28,7 +28,6 @@ module.exports = function (grunt) {
     var appPaths = {
         coders: '../node_modules/richtemplate/dev/coders',
         templating: '../node_modules/richtemplate/dev/templating',
-        htmlparser2: '../node_modules/richtemplate/dev/htmlparser2',
         'widget': '../node_modules/stonewalljs/dev/widget',
         'widget/utils': 'widget/App',
         'router': '../bower_components/urlmanager/dist/prod/router'
