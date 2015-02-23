@@ -1,9 +1,9 @@
 {
-  "name": "testapp",
+  "name": "Website",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gunins/skeleton"
+    "url": "https://github.com/gunins/website"
   },
   "private": true,
   "devDependencies": {
@@ -11,14 +11,14 @@
     "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-requirejs": "^0.4.4",
     "node-static": "^0.7.6",
-    "stonewalljs":"latest",
-    "richtemplate":"latest"
+    "stonewalljs":"0.2.4",
+    "richtemplate":"0.2.4"
   },
   "dependencies": {
     "requirejs": "^2.1.15"
   },
   "scripts": {
     "start": "node Server.js",
-    "postinstall":"bower install && grunt && npm start"
+    "postinstall":"bower install"
   }
 }

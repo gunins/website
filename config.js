@@ -19,9 +19,10 @@ require.config({
     paths: {
         'coders': '../node_modules/richtemplate/dev/coders',
         'templating': '../node_modules/richtemplate/dev/templating',
-        'widget': '../src/widget',
+        'widget': '../node_modules/stonewalljs/dev/widget',
         'routerCoders': '../src/routerCoders',
         'watch':'../lib/watch/src/watch',
-        'router':'../bower_components/urlmanager/dist/router'
+        'router':'../bower_components/urlmanager/dist/router',
+        'jquery':'../bower_components/jquery/dist/jquery'
     }
 });

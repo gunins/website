@@ -1,0 +1,48 @@
+<nav class="navbar navbar-default" role="navigation">
+    <style-less>
+        .navbar-default {
+            background: #ffffff;
+            border-bottom: 5px solid #f7f7f7;
+            .navbar-brand {
+                font-size: 3rem;
+                line-height: 4rem;
+                span {
+                    color: #29a9df;
+                }
+            }
+            .navbar-nav > li {
+                a {
+                    border-top: solid 4px #ffffff;
+                    font-size: 1.6rem;
+                    padding: 22px;
+                    font-weight: normal;
+                }
+                &.active > a, a:focus, a:hover {
+                    border-top: 4px solid #29a9df;
+                    background: #29a9df;
+                    color: white;
+                }
+            }
+        }
+    </style-less>
+    <div class="container">
+        <div class="navbar-header">
+            <button tp-type="pl" tp-name="navbarbtn" type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Stone<span>Wall</span>.</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="main-navigation">
+            <ul class="nav navbar-right navbar-nav">
+                <bd-links tp-tag="li" tp-bind-class="class">
+                    <bd-link tp-tag="a" tp-bind-href="href"></bd-link>
+                </bd-links>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,22 @@
+<div class="da-slider">
+    <style-less>
+        @import "@{import-url}_banner.less";
+    </style-less>
+
+    <bd-slider class="da-slider-frame">
+        <bd-slides class="da-slide" tp-bind-class="class" tp-update="true">
+            <bd-header tp-tag="h2"></bd-header>
+
+            <bd-body tp-tag="p"></bd-body>
+            <bd-link tp-tag="a" tp-bind-href="href" class="da-link"></bd-link>
+
+            <div class="da-img"><img tp-name="image" tp-type="bd" tp-bind-src="src" tp-bind-alt="alt"/></div>
+        </bd-slides>
+    </bd-slider>
+    <nav class="da-arrows">
+        <pl-prev tp-tag="span" class="da-arrows-prev"></pl-prev>
+        <pl-next tp-tag="span" class="da-arrows-next"></pl-next>
+    </nav>
+    <nav class="da-dots"><bd-dots tp-tag="span" tp-bind-class="class" tp-update="true"></bd-dots></nav>
+
+</div>

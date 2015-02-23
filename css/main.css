@@ -1,0 +1,12 @@
+html {
+
+    width: 100%;
+    height: 100%;;
+}
+body {
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Droid Sans';
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
