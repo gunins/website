@@ -3,43 +3,18 @@
  */
 define([
     'widget/App',
-    'widget/parser!container/Container',
-], function (App, Container) {
+    'widget/parser!./Container.html',
+    './data/navbar',
+    './data/banner'
+], function (App, Container, navbar, banner) {
 
     return App.extend({
         AppContainer: Container,
         setContext: function () {
             return {
                 data: {
-                    navbar: {
-                        links: [
-                            {
-                                link: {
-                                    href: '#/home',
-                                    text: 'Home'
-                                },
-                                class:'active'
-                            },
-                            {
-                                link: {
-                                    href: '#/about',
-                                    text: 'About'
-                                }
-                            },
-                            {
-                                link: {
-                                    href: '#/Features',
-                                    text: 'Features'
-                                }
-                            },
-                            {
-                                link: {
-                                    href: '#/api',
-                                    text: 'API Docs'
-                                }
-                            }
-                        ]
-                    }
+                    navbar: navbar,
+                    banner: banner
                 }
             }
         }

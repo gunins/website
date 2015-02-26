@@ -4,13 +4,15 @@ module.exports = function (grunt) {
             'coders/component/CpCoder',
             'coders/placeholders/plCoder',
             'coders/databind/bdCoder',
-            'coders/router/RouterCoder'
+            'coders/router/RouterCoder',
+            'coders/style/styleCoder'
         ],
         templateDecoders: [
             'coders/component/CpDecoder',
             'coders/placeholders/plDecoder',
             'coders/databind/bdDecoder',
-            'coders/router/RouterDecoder'
+            'coders/router/RouterDecoder',
+            'coders/style/styleDecoder'
         ],
         exclude: [
             'coders/component/CpCoder',
@@ -19,6 +21,8 @@ module.exports = function (grunt) {
             'coders/placeholders/plDecoder',
             'coders/databind/bdDecoder',
             'coders/databind/bdCoder',
+            'coders/router/RouterDecoder',
+            'coders/style/styleDecoder',
             'widget/Constructor',
             'widget/App',
             'templating/Decoder',

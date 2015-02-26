@@ -1,0 +1,21 @@
+<div class="row">
+    <cp-navbar data-bind="navbar" src="widget/parser!./navBar/NavBar"></cp-navbar>
+    <cp-banner
+            data-current="1"
+            data-bgincrement="30"
+            data-autoplay="true"
+            data-interval="4000"
+            data-bind="banner"
+            src="./banner/Banner"></cp-banner>
+
+    <div class="container">
+        <cp-quote src="widget/parser!./quote/Quote">
+            <pl-body>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</pl-body>
+            <pl-footer>Someone famous in <cite title="Source Title">Source Title</cite></pl-footer>
+        </cp-quote>
+    </div>
+    <cp-threeblock src="widget/parser!./threeblock/ThreeBlock"></cp-threeblock>
+    <cp-fourblock src="widget/parser!./fourblock/FourBlock"></cp-fourblock>
+    <cp-body src="widget/parser!./body/Body"></cp-body>
+</div>
+

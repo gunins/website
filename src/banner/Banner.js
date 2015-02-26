@@ -3,18 +3,16 @@
  */
 define([
     'widget/Constructor',
-    'templating/parser!./_banner.html',
-    './_slideData'
-], function (Constructor, template, slideData) {
+    'templating/parser!./_banner.html'
+], function (Constructor, template) {
     'use strict';
-    var defaults = {
+    return Constructor.extend({
+
         current: 2, 	// index of current slide
         bgincrement: 30,	// increment the bg position (parallax effect) when sliding
         autoplay: true,// slideshow on / off
-        interval: 4000  // time between transitions
-    };
-    return Constructor.extend({
-        template: template,
+        interval: 4000,
+
         classToLeft: 'da-slide-toleft',
         classFromLeft: 'da-slide-fromleft',
         classToRight: 'da-slide-toright',
@@ -22,34 +20,36 @@ define([
         classCurrent: 'da-slide-current',
         dotsCurrent: 'da-dots-current',
         dotsDisabled: 'da-dots-disabled',
-        beforeInit: function () {
-            this.data = slideData;
-            this.slides = this.data.slider.slides;
+
+        template: template,
+
+        init: function (data) {
+
+            this.current = (data.current) ? Number(data.current) : this.current;
+            this.bgincrement = (data.bgincrement) ? Number(data.bgincrement) : this.bgincrement;
+            this.interval = (data.interval) ? Number(data.interval) : this.interval;
+            this.autoplay = (data.autoplay) ? JSON.parse(data.autoplay) : this.autoplay;
+
+            this.slides = this.data.slides;
             this.setDots();
-
-        },
-        setDots: function () {
-
-            this.dots = this.data.dots = [];
-            this.slides.forEach(function () {
-                this.dots.push({class: 'disabled'});
-            }.bind(this));
-        },
-        init: function () {
-            this.autoplay = defaults.autoplay;
             this.setDirection('toLeft');
-            this.current = defaults.current;
             this.slides[this.current].class = this.classCurrent;
             this.dots[this.current].class = this.dotsCurrent;
 
             this.play();
+        },
+        setDots: function () {
+            this.dots = this.data.dots = [];
+            for (var i = 0; i < this.slides.length; i++) {
+                this.dots.push({});
+            }
         },
         play: function () {
             this.stop();
             if (this.autoplay === true) {
                 this._interval = setInterval(function () {
                     this.animateSlides();
-                }.bind(this), defaults.interval);
+                }.bind(this), this.interval);
             }
         },
         stop: function () {
@@ -86,12 +86,12 @@ define([
                     this.slides[next].class = this.classTo;
 
                     this.dots[index].class = this.dotsDisabled;
-                    this.dots[next].class = this.dotsCurrent;
 
-                    this.eventBus.publish('moveBackground', next * defaults.bgincrement);
+                    this.eventBus.publish('moveBackground', next * this.bgincrement);
                     this.eventBus.once('animationEnd', function () {
                         this.slides[next].class = this.classCurrent;
                         this.slides[index].class = 'disabled';
+                        this.dots[next].class = this.dotsCurrent;
                         this.current = next;
                     }.bind(this));
                 }
