@@ -1,5 +1,5 @@
 <div class="row">
-    <cp-navbar data-bind="navbar" src="widget/parser!./navBar/NavBar"></cp-navbar>
+    <cp-navbar data-bind="navbar" src="./navBar/NavBar"></cp-navbar>
     <cp-banner
             data-current="0"
             data-bgincrement="30"
@@ -7,17 +7,19 @@
             data-interval="4000"
             data-bind="banner"
             src="./banner/Banner"></cp-banner>
-
-    <div class="container">
-        <cp-quote src="widget/parser!./quote/Quote">
-            <pl-body>Design patterns are reusable solutions to commonly occurring problems in software design.
-                They are both exciting and a fascinating topic to explore in any programming language.</pl-body>
-            <pl-footer><cite title="Source Title">Addy Osmani</cite></pl-footer>
-        </cp-quote>
-    </div>
-    <cp-threeblock src="widget/parser!./threeblock/ThreeBlock"></cp-threeblock>
-    <cp-fourblock src="widget/parser!./fourblock/FourBlock"></cp-fourblock>
-    <cp-body data-bind="code" src="widget/parser!./body/Body"></cp-body>
-    <cp-footer src="widget/parser!./footer/Footer"></cp-footer>
+    <rt route="/home">
+        <div class="container">
+            <cp-quote src="widget/parser!./quote/Quote">
+                <pl-body>Design patterns are reusable solutions to commonly occurring problems in software design.
+                    They are both exciting and a fascinating topic to explore in any programming language.
+                </pl-body>
+                <pl-footer><cite title="Source Title">Addy Osmani</cite></pl-footer>
+            </cp-quote>
+        </div>
+        <cp-threeblock src="widget/parser!./threeblock/ThreeBlock"></cp-threeblock>
+        <cp-fourblock src="widget/parser!./fourblock/FourBlock"></cp-fourblock>
+        <cp-body data-bind="code" src="widget/parser!./body/Body"></cp-body>
+        <cp-footer src="widget/parser!./footer/Footer"></cp-footer>
+    </rt>
 </div>
 

@@ -11,6 +11,11 @@ define([
 
     return App.extend({
         AppContainer: Container,
+        init: function () {
+            if (window.location.hash === '') {
+                window.location.hash = '/home/app';
+            }
+        },
         setContext: function () {
             return {
                 data: {

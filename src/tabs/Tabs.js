@@ -24,15 +24,21 @@ define([
         },
         match: function (match) {
             var links = this.data.links;
-            match('/(:id)').to(function (id) {
+            match('(/)(:id)').to(function (id, route) {
+                var location = '/' + route.getLocation('/');
                 if (!id) {
-                    window.location.hash = '/' + links[0].name;
+                    window.location.hash = location + links[0].name;
                 } else {
                     links.forEach(function (link) {
                         if (link.name === id) {
                             link.class = 'active';
                         } else {
                             link.class = 'inactive';
+                        }
+                        var curr = '#' + location.replace(id, '');
+                        var indexOf = link.anchor.href.indexOf(curr);
+                        if (indexOf === -1 || indexOf !== 0) {
+                            link.anchor.href = curr + link.anchor.href.replace('#/','');
                         }
                     });
                 }

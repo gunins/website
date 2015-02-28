@@ -4,25 +4,29 @@
 define({
     links: [
         {
+            name: 'home',
             link: {
                 href: '#/home',
                 text: 'Home'
             },
-            class:'active'
+            class: 'active'
         },
         {
+            name: 'about',
             link: {
                 href: '#/about',
                 text: 'About'
             }
         },
         {
+            name: 'features',
             link: {
-                href: '#/Features',
+                href: '#/features',
                 text: 'Features'
             }
         },
         {
+            name: 'api',
             link: {
                 href: '#/api',
                 text: 'API Docs'
