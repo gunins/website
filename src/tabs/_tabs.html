@@ -1,0 +1,37 @@
+<div class="container">
+    <style-less>
+        .nav {
+            margin-bottom: 15px;
+        }
+
+        .container {
+            margin-bottom: 30px;
+            margin-top: 30px;
+        }
+    </style-less>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <ul class="nav nav-tabs">
+                    <bd-links tp-tag="li" tp-bind-class="class" tp-update="true" role="presentation"><bd-anchor tp-tag="a" tp-bind-href="href">App.js</bd-anchor></bd-links>
+                </ul>
+                <rt route="/app">
+                    <cp-app data-bind="app" src="../code/Code"></cp-app>
+                </rt>
+                <rt route="/container">
+                    <cp-container data-bind="container" src="../code/Code"></cp-container>
+
+                </rt>
+                <rt route="/component">
+                    <cp-component data-bind="component" src="../code/Code"></cp-component>
+                </rt>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#/app">Live Example</a></li>
+            </ul>
+            <cp-basic src="widget/parser!../basic/Basic"></cp-basic>
+        </div>
+    </div>
+</div>

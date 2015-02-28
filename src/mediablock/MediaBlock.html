@@ -9,10 +9,26 @@
                 border: solid #efefef 1px;
                 background: #f7f7f7;
             }
+            &-object {
+                width: 100px;
+                height: 100px;
+                line-height: 100px;
+                border-radius: 50%;
+                background: #ff642a;
+                text-align: center;
+                font-size: 35px;
+                margin-left: 10px;
+                .glyphicon {
+                    top: 5px;
+                    color: #ffffff;
+                }
+            }
         }
     </style-less>
     <div class="media-left">
-        <pl-image></pl-image>
+        <div class="media-object">
+            <pl-icon tp-tag="i" tp-bind-class="icon" class="glyphicon"></pl-icon>
+        </div>
     </div>
     <div class="media-body">
         <pl-heading tp-tag="h4" class="media-heading"></pl-heading>

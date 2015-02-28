@@ -23,6 +23,7 @@ require.config({
         'routerCoders': '../src/routerCoders',
         'watch':'../lib/watch/src/watch',
         'router':'../bower_components/urlmanager/dist/router',
-        'jquery':'../bower_components/jquery/dist/jquery'
+        'jquery':'../bower_components/jquery/dist/jquery',
+        'highlight':'../node_modules/highlight/lib/vendor/highlight.js/highlight.pack'
     }
 });

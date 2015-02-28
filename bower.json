@@ -5,14 +5,15 @@
     "type": "git",
     "url": "https://github.com/gunins/skeleton"
   },
-  "private":true,
+  "private": true,
   "dependencies": {
     "requirejs": "latest",
     "bootstrap": "latest",
     "watch": "latest",
-    "stonewall":"0.2.8"
+    "stonewall": "0.2.10",
+    "highlight": "~7.0.1"
   },
-  "ignore":[
+  "ignore": [
     "src"
   ]
 }

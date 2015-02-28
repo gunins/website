@@ -4,10 +4,9 @@
 define({
         slides: [
             {
-                header: 'Easy management',
-                body: 'Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, ' +
-                      'there live the blind texts. Separated they live in Bookmarksgrove right at the coast of ' +
-                      'the Semantics, a large language ocean',
+                header: 'Templating',
+                body: 'Write less code using integrated templating support. Automatic data binding, Reusable components.' +
+                      ' Runtime and production environment. Easy creating Apps writing less code.',
                 link: {
                     href: '#',
                     text: 'Read More'
@@ -18,16 +17,28 @@ define({
                 }
             },
             {
-                header: 'Revolution',
-                body: 'A small river named Duden flows by their place and supplies it with the necessary regelialia. ' +
-                      'It is a paradisematic country, in which roasted parts of sentences fly into your mouth.',
+                header: 'Scoped CSS',
+                body: 'No need worried about class naming in your application any more. Templating parser automatically ' +
+                      'applies css only to your module. you not braking anything else.',
                 link: {
                     href: '#',
                     text: 'Read More'
                 },
                 image: {
                     src: 'images/css3.png',
-                    alt: 'CSS3'
+                    alt: 'Scoped CSS'
+                }
+            },
+            {
+                header: 'Multi devices one App',
+                body: 'Using responsive guidelines, your App will working on multiple devices, and supports latest HTML5 technologies.',
+                link: {
+                    href: '#',
+                    text: 'Read More'
+                },
+                image: {
+                    src: 'images/mobile-devices.png',
+                    alt: 'Mobile'
                 }
             }
         ]

@@ -11,16 +11,17 @@
     "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-requirejs": "^0.4.4",
     "node-static": "^0.7.6",
-    "stonewalljs":"0.2.8",
-    "richtemplate":"0.2.7",
+    "stonewalljs": "0.2.10",
+    "richtemplate": "0.2.7",
     "less": "^2.1.1",
     "clean-css": "^3.0.10"
   },
   "dependencies": {
+    "highlight": "^0.2.3",
     "requirejs": "^2.1.15"
   },
   "scripts": {
     "start": "node Server.js",
-    "postinstall":"bower install"
+    "postinstall": "bower install"
   }
 }

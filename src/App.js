@@ -5,8 +5,9 @@ define([
     'widget/App',
     'widget/parser!./Container.html',
     './data/navbar',
-    './data/banner'
-], function (App, Container, navbar, banner) {
+    './data/banner',
+    './data/code'
+], function (App, Container, navbar, banner, code) {
 
     return App.extend({
         AppContainer: Container,
@@ -14,7 +15,8 @@ define([
             return {
                 data: {
                     navbar: navbar,
-                    banner: banner
+                    banner: banner,
+                    code: code
                 }
             }
         }

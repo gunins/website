@@ -34,7 +34,8 @@ module.exports = function (grunt) {
         templating: '../node_modules/richtemplate/dev/templating',
         'widget': '../node_modules/stonewalljs/dev/widget',
         'widget/utils': 'widget/App',
-        'router': '../bower_components/urlmanager/dist/prod/router'
+        'router': '../bower_components/urlmanager/dist/prod/router',
+        'highlight':'../node_modules/highlight/lib/vendor/highlight.js/highlight.pack'
     };
     var stubModules = ['templating/parser', 'widget/parser'];
 
