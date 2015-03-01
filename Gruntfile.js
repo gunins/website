@@ -71,7 +71,8 @@ module.exports = function (grunt) {
                         'bower_components/stonewall/dist/prod/loader.js',
                         'css/*',
                         'bower_components/bootstrap/dist/css/bootstrap.min.css',
-                        'bower_components/bootstrap/dist/fonts/*'
+                        'bower_components/bootstrap/dist/fonts/*',
+                        'bower_components/highlight/src/styles/googlecode.css'
                     ], dest: 'dist'}
                 ]
             }
