@@ -47,7 +47,7 @@ module.exports = function (grunt) {
                 options: {
                     baseUrl: 'src',
                     removeCombined: true,
-                    optimize: 'none',
+                    optimize: 'uglify2',
                     templateCoders: coders.templateCoders,
                     templateDecoders: coders.templateDecoders,
                     stubModules: stubModules,
