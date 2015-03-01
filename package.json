@@ -14,7 +14,8 @@
     "stonewalljs": "0.2.10",
     "richtemplate": "0.2.7",
     "less": "^2.1.1",
-    "clean-css": "^3.0.10"
+    "clean-css": "^3.0.10",
+    "grunt-contrib-copy": "^0.8.0"
   },
   "dependencies": {
     "highlight": "^0.2.3",

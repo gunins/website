@@ -41,9 +41,8 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        clean: ['target'],
+        clean: ['target', 'dist'],
         requirejs: {
-
             basic: {
                 options: {
                     baseUrl: 'src',
@@ -59,11 +58,29 @@ module.exports = function (grunt) {
 
                 }
             }
+        },
+        copy: {
+            target: {
+                files: [
+                    {expand: true, cwd: './', src: [
+                        'index.html',
+                        'config.prod.js',
+                        'images/*',
+                        'target/App.js',
+                        'bower_components/requirejs/require.js',
+                        'bower_components/stonewall/dist/prod/loader.js',
+                        'css/*',
+                        'bower_components/bootstrap/dist/css/bootstrap.min.css'
+                    ], dest: 'dist'}
+                ]
+            }
         }
     });
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('default', ['clean', 'requirejs']);
+
+    grunt.registerTask('default', ['clean', 'requirejs', 'copy']);
 
 };
