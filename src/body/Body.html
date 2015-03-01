@@ -1,60 +1,123 @@
 <div class="container">
     <style-less>
-        .title {
-            border-bottom: solid 4px #efefef;
-            margin: 0 0 15px;
+        .title- {
+            &h2 {
+                border-bottom: solid 4px #efefef;
+                margin: 0 0 15px;
 
-            h2 {
-                border-bottom: solid 6px #E44D26;
-                display: inline-block;
-                margin: 10px 0 -5px;
-                padding: 0 0 10px;
+                > * {
+                    border-bottom: solid 6px #E44D26;
+                    display: inline-block;
+                    margin: 10px 0 -5px;
+                    padding: 0 0 10px;
+                }
+            }
+            &h4 {
+                border-bottom: solid 2px #efefef;
+                margin: 0 0 15px;
+
+                > * {
+                    border-bottom: solid 4px #E44D26;
+                    display: inline-block;
+                    margin: 10px 0 -3px;
+                    padding: 0 0 10px;
+                }
             }
         }
 
     </style-less>
-    <div class="title">
-        <h2>StoneWall Javascript Framework</h2>
+    <div class="title-h2">
+        <h2>StoneWall Javascript MVVM Framework</h2>
     </div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non sagittis diam. Nulla lectus lacus, ornare non
-        tortor eget, ultrices vehicula sapien. Pellentesque vehicula lacus vitae eros bibendum dictum. Maecenas in elit
-        nibh. Curabitur sem orci, sollicitudin vitae condimentum feugiat, ultricies in arcu. In blandit ultricies nulla
-        vel semper. Maecenas feugiat arcu vitae tellus venenatis, eu porttitor ante scelerisque. Nam sed tellus id ex
-        condimentum dictum quis at libero. Praesent pretium dolor in justo porta fermentum vel sit amet nulla.
-        Suspendisse potenti. Maecenas gravida, turpis et consectetur rhoncus, massa enim suscipit ligula, quis malesuada
-        leo libero sed dui. Aliquam vehicula ante sit amet lorem lobortis, ac posuere dui mattis. Nulla facilisi. Donec
-        ultricies mi sed felis porttitor, et molestie libero ultricies.</p>
+    <p>Write less code, and keep in control. Stonewall is framework for creating large scalable single page
+        applications. This framework includes features such as - Reusable Components, Routing, Data Binding to DOM
+        Elements, UI auto updates and much more.</p>
+
+    <div class="title-h4">
+        <h4>Prerequisites</h4>
+    </div>
+    <p>Before you start, you need some knowledge about <a href="http://requirejs.org" target="_blank">Requirejs</a>, <a
+            href="https://css-tricks.com/modular-future-web-components/">Web Components</a>, HTML5 custom Element,
+        shadow DOM Concept. For Build environment you need basic knowledge about <a href="http://nodejs.org"
+                                                                                    target="_blank">Nodejs</a>, NPM,
+        Bower and
+        <a href="http://gruntjs.com/">Grunt</a></p>
+
+    <div class="title-h4">
+        <h4>How to Start</h4>
+    </div>
+    <p>Below is code example for very basic Application
+    Detailed tutorial you can find <a href="https://github.com/gunins/stonewall/tree/master/examples/basic">there.</a>
+    Source Code <a href="https://github.com/gunins/stonewall">there.</a>
+    API Docs are <a href="https://rawgit.com/gunins/stonewall/master/dist/docs/loader.html">there.</a></p>
     <cp-code src="../tabs/Tabs"></cp-code>
-    <p>Etiam ullamcorper leo ut elit tristique cursus. Vestibulum varius elit ut luctus hendrerit. Integer ac facilisis
-        metus, sit amet dapibus quam. Praesent viverra luctus quam, at auctor enim convallis vitae. Proin et sapien et
-        ante condimentum tempus. Nullam interdum, ligula ac dictum gravida, ex est lacinia elit, ac feugiat diam magna
-        eu neque. Aliquam eget neque ut est efficitur aliquet. Donec vitae est hendrerit, vehicula ex ac, vehicula urna.
-        Etiam non consectetur tortor, non condimentum sem. Quisque blandit ante non aliquet venenatis. Integer dapibus
-        accumsan risus ut lobortis. Mauris id luctus mauris, commodo lacinia lectus. Suspendisse et volutpat risus.
-        Vestibulum non accumsan neque. Mauris ipsum mauris, ullamcorper id lacus non, efficitur pharetra felis.</p>
+    <p>This framework contains everything, you need. There is tools and extensions, which ones will give to your application structure.</p>
 
-    <p>Etiam id lectus a magna iaculis luctus feugiat nec risus. Nullam eget malesuada dui. Vestibulum ornare mollis
-        massa vitae tempor. Etiam eu erat non nulla mattis egestas vitae ullamcorper quam. Aliquam molestie, eros quis
-        consectetur ullamcorper, nunc massa tempus neque, nec elementum ante lectus eget diam. Donec ullamcorper leo ut
-        lacus vestibulum imperdiet. Vestibulum maximus, massa vel porta iaculis, mauris sapien bibendum magna, vel
-        vulputate lectus metus vitae purus. Quisque scelerisque felis eu ultricies volutpat. Nunc tempor odio diam, eget
-        tempus elit lobortis sodales. Vivamus efficitur erat non sem condimentum luctus. Donec nec ex a turpis lacinia
-        tincidunt. In vel aliquet odio. Sed vehicula pretium eros ac porta. Nam maximus varius lacinia.</p>
     <cp-quote src="widget/parser!../quote/Quote">
-        <pl-body>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</pl-body>
-        <pl-footer>Someone famous in <cite title="Source Title">Source Title</cite></pl-footer>
+        <pl-body>Maintainable code works for many years. </pl-body>
+        <pl-footer>it is - Intuitive, Understandable, Adaptable, Extendable, Debuggable, Testable.</pl-footer>
     </cp-quote>
-    <p>Phasellus nec ex vel erat fringilla pellentesque. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Mauris nec felis nec neque feugiat gravida eleifend quis metus. Pellentesque habitant morbi tristique senectus
-        et netus et malesuada fames ac turpis egestas. Vestibulum laoreet, elit id venenatis mollis, nulla urna tempor
-        risus, ac sagittis lectus libero vel nibh. Integer egestas malesuada purus, et tristique nibh tempor quis.
-        Maecenas tincidunt in odio non suscipit. Etiam at felis accumsan nulla vehicula hendrerit id eu nunc.</p>
+    <div class="title-h2">
+        <h3>App Structure</h3>
+    </div>
 
-    <p>Curabitur ut placerat nulla. Vivamus eleifend felis sed euismod interdum. Aenean mauris odio, vulputate in lorem
-        nec, consequat varius arcu. Sed condimentum laoreet tortor, ut tempor ligula consectetur ac. Quisque ullamcorper
-        eleifend enim, quis congue diam condimentum sit amet. Sed consectetur ornare orci et iaculis. Integer a eros nec
-        ante condimentum convallis eget id velit. Praesent eu pulvinar libero, sit amet gravida mi. Nunc egestas felis
-        lectus, vel dapibus arcu fermentum non. Curabitur mattis ut nisl sed molestie. Mauris facilisis nisi non sem
-        finibus, sed vulputate lacus porttitor. Aenean eget sodales dolor, vitae ultricies libero. Ut id ornare
-        massa.</p>
+    <p>Application has two main classes, App and Constructor (Widget). App class will run application, and store context.
+        Also creates EventBus, Router, and models. App handling all communication with Server. App also has access to
+        Container(DOM Element). Important part is, in any Application only one </p>
+    <p>Constructor (Widget) Class handling all DOM activities. For widgets are no limitations, they can be as many you
+        want, and nested. Each Wdget has to be at least one DOM Element, or more. Any Widget can contain helpers, such
+        as Styles, Components, Placeholders, Bindings and Routes. Below is detailed information about these components.</p>
+
+    <div class="title-h4">
+        <h4>Styles</h4>
+    </div>
+    <p><strong>Style:</strong> In each template has Less css support. Any <code>&lt;style&gt;&lt;/style&gt;</code> tag 
+        supports any css or less. @import tags also supported, just need to use code <code>@{import-url}</code> before.
+        Full example <code>>&lt;style&gt; @import "@{import-url}/_path_to_css.css"; &lt;/style&gt;</code>. Full info about Less
+        <a href="http://lesscss.org/">there</a>. The key feature in templates is, your css are converted to unique classes,
+        which ones applies only to your component. in this way you ne need to worrying about repeatable css class names.
+        This approach is similar to HTML5 Shadow DOM.
+    </p>
+
+    <div class="title-h4">
+        <h4>Components</h4>
+    </div>
+    <p><strong>Components</strong> is AMD modules, means you can define in templates dynamic components.
+        <code>&lt;cp-cpname src="pathtoCMP/Component" &gt;&lt;/cp-cpname&gt;</code> Where <code>Component</code> is AMD Javascript file.
+    If Javascript file not necessary there is helper requirejs plugin <code>widget/parser!pathToComponent</code>
+        in this case component can be plain javascript file.
+    </p>
+
+    <div class="title-h4">
+        <h4>Placeholders</h4>
+    </div>
+    <p><strong>Placeholders</strong> are elements which are define location in template. In template you use
+        <code>&lt;pl-name&gt;&lt;/pl-name&gt;</code> There is two usages for placeholders.
+    <strong>First:</strong> In Constructor you have access to this element by name.<br/>
+        <strong>Second:</strong> You can define custom content for this placeholder from other templates. <br/>
+        For example
+        <code>&lt;cp-cpname src="pathtoCMP/Component" &gt;&lt;pl-name&gt;My custom content&lt;/pl-name&gt;&lt;/cp-cpname&gt;</code>
+    </p>
+
+    <div class="title-h4">
+        <h4>Bindings</h4>
+    </div>
+    <p><strong>Bindings</strong> Are used for bind Object data to dom element. in template you will use
+        <code>&lt;bd-name tp-bind="bindName" &gt;&lt;/bd-name&gt;</code>. Bindings can be nested, also you can bind
+        attributes as well <code>tp-bind-attrname="dataName"</code>. Bindings also support automatic object updates.
+        In this case you need to add attribute <code>tp-update="true"</code>
+    </p>
+
+    <div class="title-h4">
+        <h4>Routing</h4>
+    </div>
+    <p><strong>Routing</strong> are used to handle urls. Routing use <a href="https://github.com/gunins/urlmanager">UrlManager</a>
+        to make single page applications easy to work with urls. Usage for routes
+        <code>&lt;rt-rtname route="/home" &gt;&lt;div&gt;My custom content&lt;/div&gt;&lt;/rt-rtname&gt</code></p>
+
+    <div class="title-h2">
+        <h3>How to Start</h3>
+    </div>
+    <p>Live examples you can see in examples section. For see how to start, go in <a href="https://github.com/gunins/stonewall/tree/master/examples/basic">examples/basic</a>.
+    For easier to start project, there is <a href="https://github.com/gunins/skeleton">Skeleton for Application</a>.</p>
 </div>

@@ -12,23 +12,16 @@ define({
             class: 'active'
         },
         {
-            name: 'about',
+            name: 'GitHub',
             link: {
-                href: '#/about',
-                text: 'About'
-            }
-        },
-        {
-            name: 'features',
-            link: {
-                href: '#/features',
-                text: 'Features'
+                href: 'https://github.com/gunins/stonewall',
+                text: 'GitHub'
             }
         },
         {
             name: 'api',
             link: {
-                href: '#/api',
+                href: 'https://rawgit.com/gunins/stonewall/master/dist/docs/loader.html',
                 text: 'API Docs'
             }
         }

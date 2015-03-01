@@ -4,17 +4,19 @@
             &panel {
                 border: solid 1px #efefef;
                 margin: 15px 0;
+                min-height: 350px;
 
             }
             &title {
-                border-bottom: solid 4px #efefef;
+                border-bottom: solid 2px #efefef;
                 margin: 0 15px 15px;
 
-                h4 {
-                    border-bottom: solid 6px #E44D26;
+                h5 {
+                    border-bottom: solid 4px #E44D26;
+                    color: #E44D26;
                     display: inline-block;
-                    margin: 10px 0 -5px;
-                    padding: 0 0 10px;
+                    margin: 10px 0 -3px;
+                    padding: 0 0 5px;
                 }
             }
             &body {
@@ -28,7 +30,7 @@
     </style-less>
     <img tp-name="image" tp-type="pl" tp-bind-src="img" tp-bind-alt="alt" src="images/board.png" alt="Board"/>
     <div class="block-title">
-        <pl-title tp-tag="h4"></pl-title>
+        <pl-title tp-tag="h5"></pl-title>
     </div>
     <pl-body class="block-body">
     </pl-body>

@@ -1,0 +1,53 @@
+<div class="block-list">
+    <style-less>
+        .block- {
+            &list {
+                position: relative;
+                margin: 15px 0;
+                min-height: 350px;
+            }
+            &panel {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                top: 30px;
+                margin: 15px 0 0;
+                border: solid 1px #efefef;
+                background: #f7f7f7;
+                overflow: auto;
+                li {
+                    margin: 15px 0;
+                    color: #666666;
+                }
+            }
+
+            &title {
+                border-bottom: solid 2px #efefef;
+                margin: 0 15px 15px;
+
+                h5 {
+                    border-bottom: solid 4px #E44D26;
+                    color: #E44D26;
+                    display: inline-block;
+                    margin: 10px 0 -3px;
+                    padding: 0 0 5px;
+                }
+            }
+        }
+    </style-less>
+    <div class="block-title">
+        <h5>Features</h5>
+    </div>
+    <div class="block-panel">
+        <ul>
+            <li>Open Source</li>
+            <li>Pure JavaScript, no server Side code</li>
+            <li>MVVM (Model View, View Model) Pattern</li>
+            <li>Works With Other Frameworks.</li>
+            <li>Reusable Components</li>
+            <li>Declarative Bindings</li>
+            <li>Event based applications</li>
+        </ul>
+    </div>
+</div>
