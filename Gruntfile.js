@@ -70,7 +70,8 @@ module.exports = function (grunt) {
                         'bower_components/requirejs/require.js',
                         'bower_components/stonewall/dist/prod/loader.js',
                         'css/*',
-                        'bower_components/bootstrap/dist/css/bootstrap.min.css'
+                        'bower_components/bootstrap/dist/css/bootstrap.min.css',
+                        'bower_components/bootstrap/dist/fonts/*'
                     ], dest: 'dist'}
                 ]
             }
