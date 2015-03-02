@@ -65,11 +65,11 @@ module.exports = function (grunt) {
                     {expand: true, cwd: './', src: [
                         'index.html',
                         'config.prod.js',
-                        'images/*',
                         'target/App.js',
+                        'images/*',
+                        'css/*',
                         'bower_components/requirejs/require.js',
                         'bower_components/stonewall/dist/prod/loader.js',
-                        'css/*',
                         'bower_components/bootstrap/dist/css/bootstrap.min.css',
                         'bower_components/bootstrap/dist/fonts/*',
                         'bower_components/highlight/src/styles/googlecode.css'

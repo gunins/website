@@ -1,4 +1,39 @@
 <div class="row">
+    <style-less>
+        .row {
+            animation: animation 1s;
+            -webkit-animation: animation 1s;
+        }
+
+        @keyframes animation {
+            0% {
+                opacity: 0;
+                zoom: 0.9;
+            }
+            50% {
+                opacity: .5;
+                zoom: 1.1;
+            }
+            100% {
+                opacity:1;
+                zoom: 1;
+            }
+        }
+        @-webkit-keyframes animation {
+            0% {
+                opacity: 0;
+                zoom: 0.9;
+            }
+            50% {
+                opacity: .5;
+                zoom: 1.1;
+            }
+            100% {
+                opacity:1;
+                zoom: 1;
+            }
+        }
+    </style-less>
     <cp-navbar data-bind="navbar" src="./navBar/NavBar"></cp-navbar>
     <cp-banner
             data-current="0"
