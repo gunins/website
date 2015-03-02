@@ -13,18 +13,22 @@
         <div class="col-md-8">
             <div class="row">
                 <ul class="nav nav-tabs">
-                    <bd-links tp-tag="li" tp-bind-class="class" tp-update="true" role="presentation"><bd-anchor tp-tag="a" tp-update="true" tp-bind-href="href">App.js</bd-anchor></bd-links>
+                    <bd-links tp-tag="li" tp-bind-class="class" tp-update="true" role="presentation">
+                        <bd-anchor tp-tag="a" tp-update="true" tp-bind-href="href">App.js</bd-anchor>
+                    </bd-links>
                 </ul>
-                <rt route="/app">
-                    <cp-app data-bind="app" src="../code/Code"></cp-app>
-                </rt>
-                <rt route="/container">
-                    <cp-container data-bind="container" src="../code/Code"></cp-container>
+                <bd-code>
+                    <rt route="/app">
+                        <cp-app data-bind="app" src="../code/Code"></cp-app>
+                    </rt>
+                    <rt route="/container">
+                        <cp-container data-bind="container" src="../code/Code"></cp-container>
 
-                </rt>
-                <rt route="/component">
-                    <cp-component data-bind="component" src="../code/Code"></cp-component>
-                </rt>
+                    </rt>
+                    <rt route="/component">
+                        <cp-component data-bind="component" src="../code/Code"></cp-component>
+                    </rt>
+                </bd-code>
             </div>
         </div>
         <div class="col-md-4">

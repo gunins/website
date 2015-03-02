@@ -21,7 +21,9 @@ define([
                 data: {
                     navbar: navbar,
                     banner: banner,
-                    code: code
+                    tabs:{
+                        code:code
+                    }
                 }
             }
         }

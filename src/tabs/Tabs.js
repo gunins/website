@@ -11,15 +11,19 @@ define([
         template: template,
         init: function () {
             var links = [];
-            Object.keys(this.data).forEach(function (key) {
-                links.push({
-                    name: key,
-                    anchor: {
-                        href: '#/' + key,
-                        text: key
-                    }
-                });
+            var data = this.data.code;
+            Object.keys(data).forEach(function (key) {
+                if (key !== 'links') {
+                    links.push({
+                        name: key,
+                        anchor: {
+                            href: '#/' + key,
+                            text: key
+                        }
+                    });
+                }
             }.bind(this));
+
             this.data.links = links;
         },
         match: function (match) {
@@ -38,7 +42,7 @@ define([
                         var curr = '#' + location.replace(id, '');
                         var indexOf = link.anchor.href.indexOf(curr);
                         if (indexOf === -1 || indexOf !== 0) {
-                            link.anchor.href = curr + link.anchor.href.replace('#/','');
+                                link.anchor.href = curr + link.anchor.href.replace('#/', '');
                         }
                     });
                 }
