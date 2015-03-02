@@ -66,7 +66,7 @@ module.exports = function (grunt) {
                         'index.html',
                         'config.prod.js',
                         'target/App.js',
-                        'images/*',
+                        'images/**/**',
                         'css/*',
                         'bower_components/requirejs/require.js',
                         'bower_components/stonewall/dist/prod/loader.js',
