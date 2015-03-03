@@ -25,12 +25,28 @@
                     color: white;
                 }
             }
+            @media (max-width: 768px) {
+                .navbar-brand {
+                    font-size: 2rem;
+                    line-height: 3rem;
+                }
+
+                .navbar-collapse {
+                    opacity: 1;
+                    height: 205px;
+                    transition: all 1s;
+                    &.collapse {
+                        opacity: 0;
+                        display: block;
+                        height: 0;
+                    }
+                }
+            }
         }
     </style-less>
     <div class="container">
         <div class="navbar-header">
-            <button tp-type="pl" tp-name="navbarbtn" type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
+            <button tp-type="pl" tp-name="navbarBtn" type="button" class="navbar-toggle collapsed">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -39,7 +55,7 @@
             <a class="navbar-brand" href="index.html">Stone<span>Wall</span>.</a>
         </div>
 
-        <div class="collapse navbar-collapse" id="main-navigation">
+        <div class="collapse navbar-collapse" tp-name="navBar">
             <ul class="nav navbar-right navbar-nav">
                 <bd-links tp-tag="li" tp-update="true" tp-bind-class="class">
                     <bd-link tp-tag="a" tp-bind-href="href"></bd-link>

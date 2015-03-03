@@ -19,6 +19,31 @@ define([
                     }
                 });
             }.bind(this))
+        },
+        elReady: {
+            navBar: function (el) {
+                console.log(el);
+                var colapsed = true;
+                this.eventBus.subscribe('collapse', function () {
+                    if (colapsed) {
+                        el.removeClass('collapse');
+                        colapsed = false;
+                    } else {
+                        el.addClass('collapse');
+                        colapsed = true;
+                    }
+                }.bind(this));
+            }
+        },
+        events: {
+            navbarBtn: [
+                {
+                    name: 'click',
+                    action: function () {
+                        this.eventBus.publish('collapse');
+                    }
+                }
+            ]
         }
     });
 });
