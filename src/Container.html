@@ -1,8 +1,12 @@
-<div class="row">
+<div class="container-main">
     <style-less>
-        .row {
+        .container-main {
             animation: animation 1s;
             -webkit-animation: animation 1s;
+        }
+
+        .wrapper {
+            margin: -20px 0 30px;
         }
 
         @keyframes animation {
@@ -15,10 +19,11 @@
                 zoom: 1.1;
             }
             100% {
-                opacity:1;
+                opacity: 1;
                 zoom: 1;
             }
         }
+
         @-webkit-keyframes animation {
             0% {
                 opacity: 0;
@@ -29,32 +34,35 @@
                 zoom: 1.1;
             }
             100% {
-                opacity:1;
+                opacity: 1;
                 zoom: 1;
             }
         }
     </style-less>
+
     <cp-navbar data-bind="navbar" src="./navBar/NavBar"></cp-navbar>
-    <cp-banner
-            data-current="0"
-            data-bgincrement="30"
-            data-autoplay="true"
-            data-interval="4000"
-            data-bind="banner"
-            src="./banner/Banner"></cp-banner>
+    <div class="wrapper">
+        <cp-banner
+                data-current="0"
+                data-bgincrement="30"
+                data-autoplay="true"
+                data-interval="4000"
+                data-bind="banner"
+                src="./banner/Banner"></cp-banner>
+    </div>
     <rt route="/home">
-        <div class="container">
-            <cp-quote src="widget/parser!./quote/Quote">
-                <pl-body>Design patterns are reusable solutions to commonly occurring problems in software design.
-                    They are both exciting and a fascinating topic to explore in any programming language.
-                </pl-body>
-                <pl-footer><cite title="Source Title">Addy Osmani</cite></pl-footer>
-            </cp-quote>
-        </div>
+            <div class="container">
+                <cp-quote src="widget/parser!./quote/Quote">
+                    <pl-body>Design patterns are reusable solutions to commonly occurring problems in software design.
+                        They are both exciting and a fascinating topic to explore in any programming language.
+                    </pl-body>
+                    <pl-footer><cite title="Source Title">Addy Osmani</cite></pl-footer>
+                </cp-quote>
+            </div>
         <cp-threeblock src="widget/parser!./threeblock/ThreeBlock"></cp-threeblock>
         <cp-fourblock src="widget/parser!./fourblock/FourBlock"></cp-fourblock>
         <cp-body src="widget/parser!./body/Body"></cp-body>
-        <cp-footer src="widget/parser!./footer/Footer"></cp-footer>
     </rt>
+    <cp-footer src="widget/parser!./footer/Footer"></cp-footer>
 </div>
 
