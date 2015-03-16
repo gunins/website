@@ -63,11 +63,7 @@ module.exports = function (grunt) {
             target: {
                 files: [
                     {expand: true, cwd: './', src: [
-                        'index.html',
-                        'config.prod.js',
                         'target/App.js',
-                        'images/**/**',
-                        'css/*',
                         'bower_components/requirejs/require.js',
                         'bower_components/stonewall/dist/prod/loader.js',
                         'bower_components/bootstrap/dist/css/bootstrap.min.css',
