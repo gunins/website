@@ -10,7 +10,7 @@
     "requirejs": "2.2.0",
     "bootstrap": "latest",
     "watch": "latest",
-    "stonewall": "1.0.3",
+    "stonewall": "1.0.4",
     "highlight": "~7.0.1"
   },
   "ignore": [

@@ -11,7 +11,7 @@
     "grunt-contrib-clean": "^0.5.0",
     "grunt-contrib-requirejs": "^0.4.4",
     "node-static": "^0.7.6",
-    "stonewalljs": "1.0.3",
+    "stonewalljs": "1.0.4",
     "richtemplate": "1.0.5",
     "less": "2.6.1",
     "clean-css": "^3.0.10",

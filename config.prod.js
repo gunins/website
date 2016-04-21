@@ -1,5 +1,4 @@
 require.config({
-    baseUrl: './dist/target',
     templateDecoders: [
         'coders/component/CpDecoder',
         'coders/placeholders/plDecoder',
