@@ -22,7 +22,6 @@ define([
         },
         elReady: {
             navBar: function (el) {
-                console.log(el);
                 var colapsed = true;
                 this.eventBus.subscribe('collapse', function () {
                     if (colapsed) {

@@ -3,26 +3,26 @@
  */
 define([
     'widget/App',
-    'widget/parser!./Container.html',
+    'container/Container',
     './data/navbar',
     './data/banner',
     './data/code'
-], function (App, Container, navbar, banner, code) {
+], function(App, Container, navbar, banner, code) {
 
     return App.extend({
         AppContainer: Container,
-        init: function () {
+        init() {
             if (window.location.hash === '') {
                 window.location.hash = '/home/app';
             }
         },
-        setContext: function () {
+        setContext() {
             return {
                 data: {
                     navbar: navbar,
                     banner: banner,
-                    tabs:{
-                        code:code
+                    tabs:   {
+                        code: code
                     }
                 }
             }

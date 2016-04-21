@@ -2,10 +2,10 @@
  * Created by guntars on 27/02/15.
  */
 define({
-    app: {
+    app:       {
         code: {
             type: "javascript",
-            text: "define([\n\
+            src:  "define([\n\
       'widget/App',\n\
       'widget/parser!./container/Container'\n\
     ], function (App, Container) {\n\
@@ -29,28 +29,35 @@ define({
     container: {
         code: {
             type: "html",
-            text: "&lt;div class=&quot;panel panel-default&quot;&gt;\n \
-    &lt;div class=&quot;panel-heading&quot;&gt;Basic Example&lt;/div&gt;\n \
-        &lt;div class=&quot;panel-body&quot;&gt;\n \
-            &lt;cp-val data-image=&quot;images/board.png&quot; src=&quot;widget/parser!./cmp/Cmp&quot;&gt;\n \
-                &lt;pl-header&gt;Header From Parent Container&lt;/pl-header&gt;\n \
-                &lt;pl-body&gt;\n\
-                    &lt;p class=&quot;testCustom&quot;&gt;Body From Parent Container&lt;/p&gt;\n \
-                &lt;/pl-body&gt;\n \
-            &lt;/cp-val&gt;\n \
-    &lt;/div&gt;\n \
-&lt;/div&gt;"
+            src:  '<div class="panel panel-default">\n \
+    <div class="panel-heading">Basic Example</div>\n \
+        <div class="panel-body">\n \
+            <cp-val data-image="images/board.png" src="widget/parser!./cmp/Cmp">\n \
+                <pl-header>Header From Parent Container</pl-header>\n \
+                <pl-body>\n \
+                    <p class="testCustom">Body From Parent Container</p>\n \
+                </pl-body>\n \
+            </cp-val>\n \
+        </div>\n \
+    </div>\n\
+</div>'
         }
     },
     component: {
         code: {
             type: "html",
-            text: "&lt;div class=&quot;container-fluid cmp&quot;&gt;\n \
-    &lt;pl-header tp-tag=&quot;h4&quot;&gt;&lt;/pl-header&gt;\n \
-    &lt;img tp-name=&quot;image&quot; tp-type=&quot;pl&quot; tp-bind-src=&quot;image&quot; alt=&quot;Image&quot;/&gt;\n \
-    &lt;p&gt;sample text&lt;/p&gt;\n \
-    &lt;pl-body&gt;&lt;/pl-body&gt;\n \
-&lt;/div&gt;"
+            src:  '<div class="container-fluid cmp">\n \
+    <style>\n\
+        img {\n\
+            border: solid 2px #337ab7;\n\
+            width: 100%;\n\
+        }\n\
+    </style>\n\
+    <pl-header tp-tag="h4"></pl-header>\n \
+    <img tp-name="image" tp-type="pl" tp-bind-src="image" alt="Image"/>\n \
+    <p>sample text</p>\n \
+    <pl-body></pl-body>\n \
+</div>'
         }
     }
 });

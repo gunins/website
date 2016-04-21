@@ -4,26 +4,26 @@
 define([
     'widget/Constructor',
     'templating/parser!./_banner.html'
-], function (Constructor, template) {
+], function(Constructor, template) {
     'use strict';
     return Constructor.extend({
 
-        current: 2, 	// index of current slide
+        current:     2, 	// index of current slide
         bgincrement: 30,	// increment the bg position (parallax effect) when sliding
-        autoplay: true,// slideshow on / off
-        interval: 4000,
+        autoplay:    true,// slideshow on / off
+        interval:    4000,
 
-        classToLeft: 'da-slide-toleft',
-        classFromLeft: 'da-slide-fromleft',
-        classToRight: 'da-slide-toright',
+        classToLeft:    'da-slide-toleft',
+        classFromLeft:  'da-slide-fromleft',
+        classToRight:   'da-slide-toright',
         classFromRight: 'da-slide-fromright',
-        classCurrent: 'da-slide-current',
-        dotsCurrent: 'da-dots-current',
-        dotsDisabled: 'da-dots-disabled',
+        classCurrent:   'da-slide-current',
+        dotsCurrent:    'da-dots-current',
+        dotsDisabled:   'da-dots-disabled',
 
         template: template,
 
-        init: function (data) {
+        init(data) {
 
             this.current = (data.current) ? Number(data.current) : this.current;
             this.bgincrement = (data.bgincrement) ? Number(data.bgincrement) : this.bgincrement;
@@ -38,27 +38,27 @@ define([
 
             this.play();
         },
-        setDots: function () {
+        setDots () {
             this.dots = this.data.dots = [];
             for (var i = 0; i < this.slides.length; i++) {
                 this.dots.push({});
             }
         },
-        play: function () {
+        play () {
             this.stop();
             if (this.autoplay === true) {
-                this._interval = setInterval(function () {
+                this._interval = setInterval(()=> {
                     this.animateSlides();
-                }.bind(this), this.interval);
+                }, this.interval);
             }
         },
-        stop: function () {
+        stop () {
             if (this._interval) {
                 clearInterval(this._interval);
                 this._interval = false;
             }
         },
-        setDirection: function (direction) {
+        setDirection (direction) {
             this.direction = direction;
             if (direction === 'toLeft') {
                 this.classFrom = this.classToLeft;
@@ -69,7 +69,7 @@ define([
             }
 
         },
-        animateSlides: function (next) {
+        animateSlides (next) {
             if (!this.animation) {
                 this.animation = true;
                 var index = this.current;
@@ -88,7 +88,7 @@ define([
                     this.dots[index].class = this.dotsDisabled;
 
                     this.eventBus.publish('moveBackground', next * this.bgincrement);
-                    this.eventBus.once('animationEnd', function () {
+                    this.eventBus.once('animationEnd', function() {
                         this.slides[next].class = this.classCurrent;
                         this.slides[index].class = 'disabled';
                         this.dots[next].class = this.dotsCurrent;
@@ -97,7 +97,7 @@ define([
                 }
             }
         },
-        playOnce: function (direction, index) {
+        playOnce(direction, index) {
             if (direction) {
                 this.setDirection(direction);
             }
@@ -106,17 +106,17 @@ define([
             this.play();
         },
         elReady: {
-            slider: function (el) {
-                this.eventBus.subscribe('moveBackground', function (pos) {
+            slider(el) {
+                this.eventBus.subscribe('moveBackground', (pos)=> {
                     el.setStyle('background-position', pos + '% 0%');
-                }.bind(this))
+                });
             }
         },
-        events: {
+        events:  {
             slides: [
                 {
                     name: 'webkitAnimationEnd animationend',
-                    action: function (e) {
+                    action(e) {
                         if (e.animationName.indexOf('fromRightAnim3') !== -1 ||
                             e.animationName.indexOf('fromLeftAnim3') !== -1) {
                             this.eventBus.publish('animationEnd');
@@ -125,28 +125,28 @@ define([
                     }
                 }
             ],
-            prev: [
+            prev:   [
                 {
                     name: 'click',
-                    action: function (e) {
+                    action (e) {
                         e.preventDefault();
                         this.playOnce('toRight');
                     }
                 }
             ],
-            next: [
+            next:   [
                 {
                     name: 'click',
-                    action: function (e) {
+                    action (e) {
                         e.preventDefault();
                         this.playOnce('toLeft');
                     }
                 }
             ],
-            dots: [
+            dots:   [
                 {
                     name: 'click',
-                    action: function (e, el, data) {
+                    action (e, el, data) {
                         var index = this.dots.indexOf(data);
                         this.playOnce(false, index);
 

@@ -4,36 +4,19 @@
 define([
     'widget/Constructor',
     'templating/parser!./_tabs.html'
-], function (Constructor, template) {
+], function(Constructor, template) {
     'use strict';
 
     return Constructor.extend({
         template: template,
-        init: function () {
-            var links = [];
-            var data = this.data.code;
-            Object.keys(data).forEach(function (key) {
-                if (key !== 'links') {
-                    links.push({
-                        name: key,
-                        anchor: {
-                            href: '#/' + key,
-                            text: key
-                        }
-                    });
-                }
-            }.bind(this));
-
-            this.data.links = links;
+        init:     function() {
         },
-        match: function (match) {
-            var links = this.data.links;
-            match('(/)(:id)').to(function (id, route) {
-                var location = '/' + route.getLocation('/');
-                if (!id) {
-                    window.location.hash = location + links[0].name;
-                } else {
-                    links.forEach(function (link) {
+        match:    function(match) {
+            match('(/:id)').to(function(id, route) {
+                var links = this.data.links,
+                    location = '/' + route.getLocation('/');
+                if (id) {
+                    links.forEach(function(link) {
                         if (link.name === id) {
                             link.class = 'active';
                         } else {
@@ -42,7 +25,7 @@ define([
                         var curr = '#' + location.replace(id, '');
                         var indexOf = link.anchor.href.indexOf(curr);
                         if (indexOf === -1 || indexOf !== 0) {
-                                link.anchor.href = curr + link.anchor.href.replace('#/', '');
+                            link.anchor.href = curr + link.anchor.href.replace('#/', '');
                         }
                     });
                 }

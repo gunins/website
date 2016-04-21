@@ -17,13 +17,9 @@ require.config({
         'coders/style/styleDecoder'
     ],
     paths: {
-        'coders': '../node_modules/richtemplate/dev/coders',
-        'templating': '../node_modules/richtemplate/dev/templating',
-        'widget': '../node_modules/stonewalljs/dev/widget',
-        'routerCoders': '../src/routerCoders',
-        'watch':'../lib/watch/src/watch',
-        'router':'../bower_components/urlmanager/dist/router',
-        'jquery':'../bower_components/jquery/dist/jquery',
-        'highlight':'../node_modules/highlight/lib/vendor/highlight.js/highlight.pack'
+        'coders': '../node_modules/richtemplate/es6/dev/coders',
+        'templating': '../node_modules/richtemplate/es6/dev/templating',
+        'widget': '../node_modules/stonewalljs/es6/dev/widget',
+        'highlight':'../node_modules/highlight.js/lib/highlight'
     }
 });

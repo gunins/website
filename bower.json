@@ -7,10 +7,10 @@
   },
   "private": true,
   "dependencies": {
-    "requirejs": "latest",
+    "requirejs": "2.2.0",
     "bootstrap": "latest",
     "watch": "latest",
-    "stonewall": "0.2.12",
+    "stonewall": "1.0.3",
     "highlight": "~7.0.1"
   },
   "ignore": [

@@ -12,7 +12,7 @@
                     padding: 0 0 10px;
                 }
             }
-            &h4 {
+            &h4,&h3 {
                 border-bottom: solid 2px #efefef;
                 margin: 0 0 15px;
 
@@ -32,9 +32,44 @@
     <p>Write less code, and keep in control. Stonewall is framework for creating large scalable single page
         applications. This framework includes features such as - Reusable Components, Routing, Data Binding to DOM
         Elements, UI auto updates and much more.</p>
-
     <div class="title-h4">
-        <h4>Prerequisites</h4>
+        <h4>Standard HTML</h4>
+    </div>
+    <p>Rich templating structure is very close to standard html, plus all css in template is generated in unique way,
+        and it's valid for this component only. Also in css can use less functionality, which is nice benefit.
+        It's very easy to use for designers with no js knowledge. </p>
+    <p>Also this making benefit, any component has own unique html, and css, and it's valid in any application,
+        and not destructing other components.</p>
+    <div class="title-h4">
+        <h4>Data First</h4>
+    </div>
+    <p>Data first approach allow framework to generate only required visible dom parts.
+        This save initialisation time for application.
+    </p>
+    <p>Any response data, first is transformed to valid format and then compared with existing data,
+        after changes are applied to existing dom elements, removed are removed, and missing is generated.
+        Because only missing elements created and all the rest just change, this makes application very fast.
+    </p>
+    <div class="title-h4">
+        <h4>No direct Dom Access</h4>
+    </div>
+    <p>Stonewall not use direct dom access. All necessary dom elements is stored in object, and can be accessed in
+        different stages.
+        Like (elReady, when element is created, elOnChange when element binded data is changed, and adding events).
+        This approach, allow to access only component elements, and components communicate to another components, by
+        using eventBus.
+    </p>
+
+    <cp-quoteone src="widget/parser!quote/Quote">
+        <pl-body>Stonewall is component based application, and all components are not aware about each other.
+        </pl-body>
+        <pl-footer>
+            Makes easy to create common structure, and use same components in different applications.
+        </pl-footer>
+    </cp-quoteone>
+
+    <div class="title-h3">
+        <h3>Prerequisites</h3>
     </div>
     <p>Before you start, you need some knowledge about <a href="http://requirejs.org" target="_blank">Requirejs</a>, <a
             href="https://css-tricks.com/modular-future-web-components/">Web Components</a>, HTML5 custom Element,
@@ -47,34 +82,40 @@
         <h4>How to Start</h4>
     </div>
     <p>Below is code example for very basic Application
-    Detailed tutorial you can find <a href="https://github.com/gunins/stonewall/tree/master/examples/basic">there.</a>
-    Source Code <a href="https://github.com/gunins/stonewall">there.</a>
-    API Docs are <a href="https://rawgit.com/gunins/stonewall/master/dist/docs/loader.html">there.</a></p>
+        Detailed tutorial you can find <a
+                href="https://github.com/gunins/stonewall/tree/master/examples/basic">there.</a>
+        Source Code <a href="https://github.com/gunins/stonewall">there.</a>
+        API Docs are <a href="https://rawgit.com/gunins/stonewall/master/dist/docs/loader.html">there.</a></p>
     <cp-code data-bind="tabs" src="../tabs/Tabs"></cp-code>
-    <p>This framework contains everything, you need. There is tools and extensions, which ones will give to your application structure.</p>
+    <p>This framework contains everything, you need. There is tools and extensions, which ones will give to your
+        application structure.</p>
 
     <cp-quote src="widget/parser!../quote/Quote">
-        <pl-body>Maintainable code works for many years. </pl-body>
+        <pl-body>Maintainable code works for many years.</pl-body>
         <pl-footer>it is - Intuitive, Understandable, Adaptable, Extendable, Debuggable, Testable.</pl-footer>
     </cp-quote>
     <div class="title-h2">
         <h3>App Structure</h3>
     </div>
 
-    <p>Application has two main classes, App and Constructor (Widget). App class will run application, and store context.
+    <p>Application has two main classes, App and Constructor (Widget). App class will run application, and store
+        context.
         Also creates EventBus, Router, and models. App handling all communication with Server. App also has access to
         Container(DOM Element). Important part is, in any Application only one </p>
     <p>Constructor (Widget) Class handling all DOM activities. For widgets are no limitations, they can be as many you
         want, and nested. Each Wdget has to be at least one DOM Element, or more. Any Widget can contain helpers, such
-        as Styles, Components, Placeholders, Bindings and Routes. Below is detailed information about these components.</p>
+        as Styles, Components, Placeholders, Bindings and Routes. Below is detailed information about these
+        components.</p>
 
     <div class="title-h4">
         <h4>Styles</h4>
     </div>
-    <p><strong>Style:</strong> In each template has Less css support. Any <code>&lt;style&gt;&lt;/style&gt;</code> tag 
+    <p><strong>Style:</strong> In each template has Less css support. Any <code>&lt;style&gt;&lt;/style&gt;</code> tag
         supports any css or less. @import tags also supported, just need to use code <code>@{import-url}</code> before.
-        Full example <code>>&lt;style&gt; @import "@{import-url}/_path_to_css.css"; &lt;/style&gt;</code>. Full info about Less
-        <a href="http://lesscss.org/">there</a>. The key feature in templates is, your css are converted to unique classes,
+        Full example <code>>&lt;style&gt; @import "@{import-url}/_path_to_css.css"; &lt;/style&gt;</code>. Full info
+        about Less
+        <a href="http://lesscss.org/">there</a>. The key feature in templates is, your css are converted to unique
+        classes,
         which ones applies only to your component. in this way you ne need to worrying about repeatable css class names.
         This approach is similar to HTML5 Shadow DOM.
     </p>
@@ -83,8 +124,9 @@
         <h4>Components</h4>
     </div>
     <p><strong>Components</strong> is AMD modules, means you can define in templates dynamic components.
-        <code>&lt;cp-cpname src="pathtoCMP/Component" &gt;&lt;/cp-cpname&gt;</code> Where <code>Component</code> is AMD Javascript file.
-    If Javascript file not necessary there is helper requirejs plugin <code>widget/parser!pathToComponent</code>
+        <code>&lt;cp-cpname src="pathtoCMP/Component" &gt;&lt;/cp-cpname&gt;</code> Where <code>Component</code> is AMD
+        Javascript file.
+        If Javascript file not necessary there is helper requirejs plugin <code>widget/parser!pathToComponent</code>
         in this case component can be plain javascript file.
     </p>
 
@@ -93,7 +135,7 @@
     </div>
     <p><strong>Placeholders</strong> are elements which are define location in template. In template you use
         <code>&lt;pl-name&gt;&lt;/pl-name&gt;</code> There is two usages for placeholders.
-    <strong>First:</strong> In Constructor you have access to this element by name.<br/>
+        <strong>First:</strong> In Constructor you have access to this element by name.<br/>
         <strong>Second:</strong> You can define custom content for this placeholder from other templates. <br/>
         For example
         <code>&lt;cp-cpname src="pathtoCMP/Component" &gt;&lt;pl-name&gt;My custom content&lt;/pl-name&gt;&lt;/cp-cpname&gt;</code>
@@ -118,6 +160,8 @@
     <div class="title-h2">
         <h3>How to Start</h3>
     </div>
-    <p>Live examples you can see in examples section. For see how to start, go in <a href="https://github.com/gunins/stonewall/tree/master/examples/basic">examples/basic</a>.
-    For easier to start project, there is <a href="https://github.com/gunins/skeleton">Skeleton for Application</a>.</p>
+    <p>Live examples you can see in examples section. For see how to start, go in <a
+            href="https://github.com/gunins/stonewall/tree/master/examples/basic">examples/basic</a>.
+        For easier to start project, there is <a href="https://github.com/gunins/skeleton">Skeleton for Application</a>.
+    </p>
 </div>
