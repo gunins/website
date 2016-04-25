@@ -13,9 +13,10 @@ define([
 
     hljs.registerLanguage('javascript', js);
     hljs.registerLanguage('html', xml);
-    hljs.registerLanguage('less', less);
+    hljs.registerLanguage('css', less);
     hljs.configure({
-        classPrefix: template.templateId + ' hljs-'
+        classPrefix: template.templateId + ' hljs-',
+        languages:['html','css']
     });
 
 
