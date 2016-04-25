@@ -6,15 +6,17 @@ define([
     'templating/parser!./_code.html',
     'highlight',
     './hljsLanguages/javascript',
-    './hljsLanguages/xml'
-], function(Constructor, template, hljs, js, xml) {
+    './hljsLanguages/xml',
+    './hljsLanguages/less'
+], function(Constructor, template, hljs, js, xml, less) {
     'use strict';
 
+    hljs.registerLanguage('javascript', js);
+    hljs.registerLanguage('html', xml);
+    hljs.registerLanguage('less', less);
     hljs.configure({
         classPrefix: template.templateId + ' hljs-'
     });
-    hljs.registerLanguage('javascript', js);
-    hljs.registerLanguage('html', xml);
 
 
     return Constructor.extend({

@@ -24,7 +24,8 @@
   },
   "dependencies": {
     "highlight.js": "9.3.0",
-    "requirejs": "2.2.0"
+    "requirejs": "2.2.0",
+    "reveal.js": "^3.3.0"
   },
   "scripts": {
     "start": "node Server.js",
