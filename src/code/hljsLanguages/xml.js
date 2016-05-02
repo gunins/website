@@ -62,11 +62,13 @@ define(function() {
                      ending braket. The '$' is needed for the lexeme to be recognized
                      by hljs.subMode() that tests lexemes outside the stream.
                      */
-                    begin:     '<style(?=\\s|>|$)', end: '>',
+                    begin:     '<style(?=\\s|>|$)',
+                    end: '>',
                     keywords:  {name: 'style'},
                     contains:  [TAG_INTERNALS],
                     starts:    {
-                        end:         '</style>', returnEnd: true,
+                        end:         '</style>',
+                        returnEnd: true,
                         subLanguage: ['css', 'xml']
                     }
                 },
@@ -77,7 +79,8 @@ define(function() {
                     keywords:  {name: 'script'},
                     contains:  [TAG_INTERNALS],
                     starts:    {
-                        end:         '\<\/script\>', returnEnd: true,
+                        end:         '\<\/script\>',
+                        returnEnd: true,
                         subLanguage: ['actionscript', 'javascript', 'handlebars', 'xml']
                     }
                 },

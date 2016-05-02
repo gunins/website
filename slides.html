@@ -11,8 +11,147 @@
 <body>
 <div class="reveal">
     <div class="slides">
-        <section>Slide 1</section>
-        <section>Slide 2</section>
+        <section>
+            <div data-markdown class="col-md-12">
+                <script type="text/template">
+                    ## StoneWall
+                    MVVM framework to simplify web applications.
+
+                    <small>Guntars Simanskis [#simanskis](https://twitter.com/simanskis),
+                        [StoneWall](http://stonewalljs.com)
+                    </small>
+                </script>
+            </div>
+        </section>
+        <section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Templating
+                        * HTML close syntax
+                        * Scoped css + Less Support
+                        * Direct access to elements, no need selectors
+                        * Runtime environment
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## HTML Close Syntax
+                    </script>
+                </div>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ```xml
+                        <div class="container-fluid cmp">
+                            <style>
+                                img {
+                                    border: solid 2px #337ab7;
+                                    width: 100%;
+                                }
+                            </style>
+                            <pl-header tp-tag="h4"></pl-header>
+                            <img tp-name="image" tp-type="pl" tp-bind-src="image" alt="Image"/>
+                            <p>sample text</p>
+                            <pl-body></pl-body>
+                        </div>
+                        ```
+                    </script>
+                </div>
+                <div data-markdown class="col-md-6">
+                    <script type="text/template">
+                        * Full HTML support
+                        * Custom elements availability
+                    </script>
+                </div>
+                <div data-markdown class="col-md-6">
+                    <script type="text/template">
+                        * CSS can type directly in template
+                        * Any css will be only valid for these elements
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Scoped CSS + Lesss Support
+                    </script>
+                </div>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ```less
+                        .body{
+                        h2{
+                        font-size: 2em;
+                        }
+                        p{
+                        font-size:1.3em;
+                        }
+                        }
+                        ```
+                    </script>
+                </div>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        * Templating fully supporting [Less](http://lesscss.org/), including imports.
+                        * Any template tag will generate unique id and css property use the reference to this.
+                        * This means any css property is valid only for this particular template.
+
+                        <small>For example, if you use common css namings like **.hide, .show** they'll not override
+                            another components on the page.
+                        </small>
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div class="col-md-12" data-markdown>
+                    <script type="text/template">
+                        ## Direct Access to Elements
+
+                        ```xml
+                        <div>
+                            <pl-header tp-tag="h4"></pl-header>
+                            <p tp-name="paragraph">sample text</p>
+                        </div>
+                        ```
+                        After template rendering DOM, any tag which contains `tp-name` or
+                        custom tag after dash `pl-header` return these elements. any of these elements are available in `children[name]`
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div class="col-md-12" data-markdown>
+                    <script type="text/template">
+                        ### Runtime environment
+                        In production will use precompiled templates, this significantly will increase application perfomance.
+                        Below you see the difference between development and production.
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div class="col-md-12">
+                    <img src=" https://raw.githubusercontent.com/gunins/richtemplate/master/docs/images/prod_dev.jpg"
+                         alt="Templating Environment">
+                </div>
+            </section>
+        </section>
+        <section>
+            <div data-markdown class="col-md-12">
+                <script type="text/template">
+                    ## Reusable Components
+                    A paragraph with some text and a [link](http://hakim.se).
+                </script>
+            </div>
+        </section>
+        <section>
+            <div data-markdown class="col-md-12">
+                <script type="text/template">
+                    ## Data First Approach
+                    A paragraph with some text and a [link](http://hakim.se).
+                </script>
+            </div>
+        </section>
         <section>
             <div class="row">
                 <div data-markdown class="col-md-12">
