@@ -27,6 +27,118 @@
             <section>
                 <div data-markdown class="col-md-12">
                     <script type="text/template">
+                        ## Overview
+                        * CSS problems in large projects
+                        * Common html pattern reusability
+                        * Routing
+                        * Client server communication
+                        * Reusable modules
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## CSS Problems
+                        * In large projects one of the biggest challenge is css naming conventions. For example, if anyone
+                        use same classes like ` .hide `, ` .show ` or tag selectors ` h2,h3,p ` etc. Each other will override.
+
+                        * HTML5 shadow dom is one solution, or with css2 can use css naming conventions, like ` .ProjectName-ModuleName-Item_Modifier `.
+
+                        * This conventions working pretty well, but disadvantages, need extreme code review, to let everybody to follow naming conventions.
+                        And another one, your css is decoupled from html modules.
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        * StoneWall providing another solution, Each css in template, is compiled, and generated with unique ids for
+                        each template element.
+
+                        * Using this unique system, any css will be applied only to current component, inside template only.
+                        There is another advantage, component oriented css means, you can use different versions of sam components on the same page,
+                        without worrying if they not conflicting together.
+
+                        * Also no need maintain css separately. But for designers this still be same as you use ordinary css+html.
+
+                        * Also if you are use, this templating mechanism, you not need common css files, you can use less functionality, to import your common patterns.
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Common HTML pattern reusability
+                        * Lot of development time, reused common html patterns requiring copy and paste, after applying javascript functionality
+                        by using dom selectors.
+
+                        * Another common use case is generate templates as strings, and then apply to dom, and after again apply javascript.
+
+                        * Problems for both these approaches, in first you have to repeat html, and control javascript multiple times,
+                        on second is difficult to manage lifecycle, like events. Another problem is by adding and removing items, based on application behaviour.
+
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        * In StoneWall, have unique templating system, inside  html you use reference to module only. Any module has own html. In this case,
+                        no need repeat same html again and again. This is very great for changes.
+
+                        * You no need to use selectors, for manipulating dom, you have direct reference to the element.
+                        This approach make your app much easier to use.
+
+                        * Regards to adding and removing elements, there is very easy data binding api.
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Routing
+                        * One of important parts for single page applications is routing (URL handling). Easiest way is
+                        root urls, with page change. But what's about nested URIs? For example,
+                        you use same component on different pages, but this component handling own URIs. In common practice
+                        this common component not common any more, because there requiring cod injection.
+
+                        * Not in StoneWall, StoneWall, have a nested routing manipulation, any component can take own URIs,
+                        and controlling only it's own part.
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Client server communication
+                        * Because in StoneWall have very good eventBus support, all ajax, websockets, SSE etc. you can control
+                        from single point of entry, and even use web workers, shared workers or even service workers.
+
+                        * From this entry you can apply to certain part on your app, by using eventBus. Using this approach,
+                        you can easy add remove or change different app components, because they only aware to about events,
+                        not the structure.
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Reusable modules
+                        * Each module, you can publish in npm, bower or any other package mechanism. Also modules can use different dependencies.
+
+                        * In this way you, just add, your modules in to package manager, and on compile time, all packages will be automatically compiled.
+
+                        * This great mechanism, allow you to use third party modules, or in large projects use same modules across the teams,
+                        and full version control.
+                    </script>
+                </div>
+            </section>
+        </section>
+        <section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
                         ## Templating
                         * HTML close syntax
                         * Scoped css + Less Support
@@ -98,7 +210,8 @@
                         * Any template tag will generate unique id and css property use the reference to this.
                         * This means any css property is valid only for this particular template.
 
-                        <small>For example, if you use common css namings like **.hide, .show** they'll not override
+                        <small>For example, if you use common css namings like **.hide, .show** they'll not
+                            override
                             another components on the page.
                         </small>
                     </script>
@@ -148,14 +261,122 @@
                     </script>
                 </div>
             </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ##  Any template as component
+                        Any template can be used as component.
+                        Below is component example with some css styles, and placeholders with default values.
+                    </script>
+                </div>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ```xml
+                        <div class="panel">
+                            <style-less>
+                                .panel {
+                                    border: solid 1pc #ccc;
+                                    &-header {
+                                        font-weight: bold;
+                                        border-bottom: solid 1px;
+                                    }
+                                    &-body {
+                                        padding: 10px 15px;
+                                    }
+                                }
+                            </style-less>
+                            <pl-header class="panel-header">Default Header</pl-header>
+                            <pl-body class="panel-body">Default Body</pl-body>
+                        </div>
+                        ```
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ##  Using Components
+                        To use this component above need tag `cp` and name after `-` names are unique in each template.
+                        and `src` is location to component.
+
+                        ```xml
+                        <div>
+                            <cp-panel src="./panel"></cp-panel>
+                        </div>
+                        ```
+
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ##  Using placeholders
+                        In example above was placeholders with default values. Below is example how to change placeholder content.
+
+                        ```xml
+                        <div>
+                            <cp-panel src="./panel">
+                                <pl-header>Panel Header</pl-header>
+                                <pl-body>
+                                    <p>Panel Body text</p>
+                                </pl-body>
+                            </cp-panel>
+                        </div>
+                        ```
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        You can use another components in placeholders also.
+
+                        ```xml
+                        <div>
+                            <cp-panel src="./panel">
+                                <pl-header>Panel Header</pl-header>
+                                <pl-body>
+                                    <cp-component src="./component"></cp-component>
+                                </pl-body>
+                            </cp-panel>
+                        </div>
+                        ```
+
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Attributes to Components
+
+                        ```xml
+                        <div>
+                            <cp-panel data-width="150" data-height="100" src="./panel">
+                                <pl-header>Panel Header</pl-header>
+                                <pl-body>
+                                    <cp-component src="./component"></cp-component>
+                                </pl-body>
+                            </cp-panel>
+                        </div>
+                        ```
+                        As in example you all defined attributes are available in to your component class.
+                    </script>
+                </div>
+            </section>
         </section>
         <section>
-            <div data-markdown class="col-md-12">
-                <script type="text/template">
-                    ## Data First Approach
-                    A paragraph with some text and a [link](http://hakim.se).
-                </script>
-            </div>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Data First Approach
+                        * Binder elements
+                        * Data example
+                        * Using data bindings
+                    </script>
+                </div>
+            </section>
         </section>
         <section>
             <div class="row">
