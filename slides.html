@@ -7,6 +7,30 @@
     <!--<link rel="stylesheet" href="node_modules/reveal.js/lib/css/zenburn.css">-->
     <link rel="stylesheet" href="node_modules/highlight.js/styles/googlecode.css">
 
+    <style>
+        .reveal {
+            font-size: 24px;
+        }
+
+        .reveal ul {
+            display: block;
+        }
+
+        .reveal li {
+            text-align: left;
+        }
+
+        .reveal code.hljs {
+            font-size: 140%;
+        }
+
+        .reveal code:not(.hljs) {
+            font-size: 60%;
+            padding: 0 10px;
+            vertical-align: middle;
+        }
+    </style>
+
 </head>
 <body>
 <div class="reveal">
@@ -28,11 +52,15 @@
                 <div data-markdown class="col-md-12">
                     <script type="text/template">
                         ## Overview
-                        * CSS problems in large projects
-                        * Common html pattern reusability
-                        * Routing
-                        * Client server communication
-                        * Reusable modules
+                        CSS problems in large projects
+
+                        Common html pattern reusability
+
+                        Routing
+
+                        Client server communication
+
+                        Reusable modules
                     </script>
                 </div>
             </section>
@@ -112,6 +140,8 @@
                 <div data-markdown class="col-md-12">
                     <script type="text/template">
                         ## Client server communication
+                        * Stonewall by concept is asynchronous, all server response is easy to maintain.
+
                         * Because in StoneWall have very good eventBus support, all ajax, websockets, SSE etc. you can control
                         from single point of entry, and even use web workers, shared workers or even service workers.
 
@@ -140,10 +170,14 @@
                 <div data-markdown class="col-md-12">
                     <script type="text/template">
                         ## Templating
-                        * HTML close syntax
-                        * Scoped css + Less Support
-                        * Direct access to elements, no need selectors
-                        * Runtime environment
+
+                        HTML close syntax
+
+                        Scoped css + Less Support
+
+                        Direct access to elements, no need selectors
+
+                        Runtime environment
                     </script>
                 </div>
             </section>
@@ -181,6 +215,45 @@
                     <script type="text/template">
                         * CSS can type directly in template
                         * Any css will be only valid for these elements
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Supported Templating tags
+
+                        * AMD module id is defined by `src` attribute. data attributes are supported.
+
+                        ```xml
+                        <cp-name src="moduleId" data-size="500"></cp-name>
+                        ```
+                        * Placeholders, defining custom content in to module. Inside module is used where will be placed,
+                        by importing define content to be replaced. Inside module can add default content. For custom tags need to define
+                        by `tp-tag` attribute.
+
+                        ```xml
+                        <pl-elname tp-tag="p">Default or custom <strong>content</strong></pl-elname>
+                        ```
+                        * Data bindings, is used for binding data. Component data is applied to binding tag.
+                        For arrays automatically recognise. `tp-update` attribute will watch object changes, `tp-bind-attr-name`,
+                        define binding for atrribute, `data-name` take object attribute to bind, if this attribute not defined, taking name.
+
+                        ```xml
+                        <bd-somename tp-bind-class="class">
+                            <bd-child tp-update="true"></bd-child>
+                        </bd-somename>
+                        ```
+                        * Routing tags is created, for supporting url trigger. There available static routes and dynamic.
+                        Routing is implemented using [URL Manager](https://github.com/gunins/urlmanager).
+
+                        ```xml
+                        <rt-test rt="/test">There content for test route</rt-test>
+                        <rt-profile rt="/profile/:id">
+                            <h2>There content for profile info</h2>
+                            <bd-info></bd-info>
+                        </rt-profile>
+                        ```
                     </script>
                 </div>
             </section>
@@ -254,10 +327,14 @@
                 <div data-markdown class="col-md-12">
                     <script type="text/template">
                         ## Reusable Components
-                        * Any template as component
-                        * Using components
-                        * Placeholders
-                        * Attributes to components
+
+                        Any template as component
+
+                        Using components
+
+                        Placeholders
+
+                        Attributes to components
                     </script>
                 </div>
             </section>
@@ -371,43 +448,167 @@
                 <div data-markdown class="col-md-12">
                     <script type="text/template">
                         ## Data First Approach
-                        * Binder elements
-                        * Data example
-                        * Using data bindings
+
+                        Data binding
+
+                        Data example in Component
+
+                        Using data bindings
+
+                        Using Components in bindings
+
+
                     </script>
                 </div>
             </section>
+            <section>
+                <div class="row">
+                    <div data-markdown class="col-md-12">
+                        <script type="text/template">
+                            ## Data Binding
+
+                            * Built in data binding, makes apps very easy to use.
+                            * Define data inside Component, and use binding in temlapte
+                        </script>
+                    </div>
+                    <div data-markdown class="col-md-6">
+                        <script type="text/template">
+                            ```javascript
+                            ...
+
+                            beforeInit(){
+                            this.data={
+                            header:'This is Header',
+                            body:'this is body'
+                            }
+                            }
+
+                            ...
+                            ```
+                        </script>
+                    </div>
+                    <div data-markdown class="col-md-6">
+                        <script type="text/template">
+                            ```xml
+                            <div>
+                                <bd-header></bd-header>
+                                <bd-body></bd-body>
+                            </div>
+                            ```
+                        </script>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div data-markdown class="col-md-12">
+                        <script type="text/template">
+                            ## Data example in Component
+                            * Inside component you can inherit data from parent, or load externally.
+                            * In Component class `beforeInit` method allow you to manipulate data if necessary.
+                            * On example left is default behaviour, on right is how to bind to different attributes.
+                        </script>
+                    </div>
+                    <div data-markdown class="col-md-6">
+                        <script type="text/template">
+                            ```javascript
+                            ...
+
+                            beforeInit(attrs, parent, data){
+                            this.data=data
+                            }
+
+                            ...
+
+                            ```
+                        </script>
+                    </div>
+                    <div data-markdown class="col-md-6">
+                        <script type="text/template">
+                            ```javascript
+                            ...
+
+                            beforeInit(attrs, parent, data){
+                            this.data = {
+                            title:data.name,
+                            body:data.text
+                            }
+                            }
+
+                            ...
+
+                            ```
+                        </script>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div data-markdown class="col-md-12">
+                        <script type="text/template">
+                            ## Using data bindings
+                            * To use data bindings is easy, just define name after `-` which you want to bind.
+                            * There also nested structure is supported. For Arrays no need special tags, framework automatically support.
+                            * Auto update is also supported, use `tp-update="true"` tag.
+                            * For custom tags need to add `tp-tag="p"`
+                            * To bind attributes need add `tp-bind-href="link"` where `href` is attribute and link is reference to object.
+
+                            ```xml
+                            <div>
+                                <bd-parent>
+                                    <bd-children></bd-children>
+                                </bd-parent>
+                                <bd-footer></bd-footer>
+                            </div>
+
+                            ```
+
+                            ```xml
+                            <div>
+                                <bd-list tp-tag="li">
+                                    <bd-link tp-tag="a" tp-bind-href="href">
+                                        <bd-counter tp-tag="span" tp-update="true"></bd-counter>
+                                    </bd-link>
+                                </bd-list>
+                            </div>
+                            ```
+                        </script>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div data-markdown class="col-md-12">
+                        <script type="text/template">
+                            ## Using Components in data bindings
+                            * If in bindings you want to use components you can do this.
+                            * Also in components, you can bind specific data to that component
+                            * Or all binded data will be available in component
+
+                            ```xml
+                            <div>
+                                <bd-parent>
+                                    <cp-children src="children/Children"></cp-children>
+                                </bd-parent>
+                            </div>
+
+                            ```
+
+                            ```xml
+                            <div>
+                                <bd-list tp-tag="li">
+                                    <bd-link tp-tag="a" tp-bind-href="href">
+                                        <cp-counter data-bind="counter" src="counter/Counter"></cp-counter>
+                                    </bd-link>
+                                </bd-list>
+                            </div>
+                            ```
+                        </script>
+                    </div>
+                </div>
+            </section>
         </section>
-        <section>
-            <div class="row">
-                <div data-markdown class="col-md-12">
-                    <script type="text/template">
-                        ## Page title
-                        A paragraph with some text and a [link](http://hakim.se).
-                    </script>
-                </div>
-                <div data-markdown class="col-md-6">
-                    <script type="text/template">
-                        ```javascript
-                        var a = function(a){
-                        return a;
-                        }
-                        document.createElement('div');
-                        ```
-                    </script>
-                </div>
-                <div data-markdown class="col-md-6">
-                    <script type="text/template">
-                        ```javascript
-                        var a = function(a){
-                        return a;
-                        }
-                        document.createElement('div');
-                        ```
-                    </script>
-                </div>
-            </div>
-        </section>
+
     </div>
 </div>
 <script src="node_modules/reveal.js/lib/js/head.min.js"></script>
