@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="node_modules/reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="node_modules/reveal.js/css/theme/moon.css">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/moon.css">
     <!--<link rel="stylesheet" href="node_modules/reveal.js/lib/css/zenburn.css">-->
-    <link rel="stylesheet" href="node_modules/highlight.js/styles/googlecode.css">
+    <link rel="stylesheet" href="../node_modules/highlight.js/styles/googlecode.css">
 
     <style>
         .reveal {
@@ -515,7 +515,7 @@
                             ...
 
                             beforeInit(attrs, parent, data){
-                            this.data=data
+                                this.data = data
                             }
 
                             ...
@@ -529,10 +529,10 @@
                             ...
 
                             beforeInit(attrs, parent, data){
-                            this.data = {
-                            title:data.name,
-                            body:data.text
-                            }
+                                this.data = {
+                                    title:  data.name,
+                                    body:   data.text
+                                }
                             }
 
                             ...
@@ -611,8 +611,8 @@
 
     </div>
 </div>
-<script src="node_modules/reveal.js/lib/js/head.min.js"></script>
-<script src="node_modules/reveal.js/js/reveal.js"></script>
+<script src="../node_modules/reveal.js/lib/js/head.min.js"></script>
+<script src="../node_modules/reveal.js/js/reveal.js"></script>
 
 <script>
     Reveal.initialize({
@@ -625,30 +625,30 @@
         // Optional libraries used to extend on reveal.js
         dependencies: [
             {
-                src:       'node_modules/reveal.js/lib/js/classList.js',
+                src:       '../node_modules/reveal.js/lib/js/classList.js',
                 condition: function() {
                     return !document.body.classList;
                 }
             },
             {
-                src:       'node_modules/reveal.js/plugin/markdown/marked.js',
+                src:       '../node_modules/reveal.js/plugin/markdown/marked.js',
                 condition: function() {
                     return !!document.querySelector('[data-markdown]');
                 }
             },
             {
-                src:       'node_modules/reveal.js/plugin/markdown/markdown.js',
+                src:       '../node_modules/reveal.js/plugin/markdown/markdown.js',
                 condition: function() {
                     return !!document.querySelector('[data-markdown]');
                 }
             },
             {
-                src:      'node_modules/reveal.js/plugin/highlight/highlight.js', async: true,
+                src:      '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true,
                 callback: function() {
                     hljs.initHighlightingOnLoad();
                 }
             },
-            {src: 'node_modules/reveal.js/plugin/notes/notes.js'}
+            {src: '../node_modules/reveal.js/plugin/notes/notes.js'}
         ]
     });
 </script>
