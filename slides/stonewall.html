@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
     <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/moon.css">
+    <!--<link rel="stylesheet" href="node_modules/reveal.js/lib/css/zenburn.css">-->
     <link rel="stylesheet" href="../node_modules/highlight.js/styles/googlecode.css">
 
     <style>
@@ -37,11 +38,11 @@
         <section>
             <div data-markdown class="col-md-12">
                 <script type="text/template">
-                    ## Guntars Simanskis
-                    Scalable JavaScript, PWA (Progressive Web Applications).
+                    ## StoneWall
+                    MVVM framework to simplify web applications.
 
-                    <small>Guntars Simanskis [Twitter](https://twitter.com/simanskis),
-                        [Github](https://github.com/gunins)
+                    <small>Guntars Simanskis [#simanskis](https://twitter.com/simanskis),
+                        [StoneWall](http://stonewalljs.com)
                     </small>
                 </script>
             </div>
@@ -51,63 +52,59 @@
                 <div data-markdown class="col-md-12">
                     <script type="text/template">
                         ## Overview
-                        - Why PWA
-                        - Be ready with service workers
-                        - Firebase as hosting and Server side handling
+                        CSS problems in large projects
+
+                        Common html pattern reusability
+
+                        Routing
+
+                        Client server communication
+
+                        Reusable modules
                     </script>
                 </div>
             </section>
             <section>
                 <div data-markdown class="col-md-12">
                     <script type="text/template">
-                        ## Why PWA (Progressive Web App)
-                        ### Key points from Chrome developers:
-                        **Reliable** - Load instantly and never show the dinosaur, even in uncertain network conditions.
+                        ## CSS Problems
+                        * In large projects one of the biggest challenge is css naming conventions. For example, if anyone
+                        use same classes like ` .hide `, ` .show ` or tag selectors ` h2,h3,p ` etc. Each other will override.
 
-                        **Fast** - Respond quickly to user interactions with silky smooth animations and no janky scrolling.
+                        * HTML5 shadow dom is one solution, or with css2 can use css naming conventions, like ` .ProjectName-ModuleName-Item_Modifier `.
 
-                        **Engaging** - Feel like a natural app on the device, with an immersive user experience.
+                        * This conventions working pretty well, but disadvantages, need extreme code review, to let everybody to follow naming conventions.
+                        And another one, your css is decoupled from html modules.
                     </script>
                 </div>
             </section>
             <section>
                 <div data-markdown class="col-md-12">
                     <script type="text/template">
-                        ## Be ready with service workers
+                        * StoneWall providing another solution, Each css in template, is compiled, and generated with unique ids for
+                        each template element.
 
-                        By using service workers, you can catch all fetch events, and use network requests, only for necessary tasks.
+                        * Using this unique system, any css will be applied only to current component, inside template only.
+                        There is another advantage, component oriented css means, you can use different versions of sam components on the same page,
+                        without worrying if they not conflicting together.
 
-                        App still usable, with no internet connection at all. With Service Worker app cache, you can store all static assets on client.
+                        * Also no need maintain css separately. But for designers this still be same as you use ordinary css+html.
 
+                        * Also if you are use, this templating mechanism, you not need common css files, you can use less functionality, to import your common patterns.
                     </script>
                 </div>
             </section>
             <section>
                 <div data-markdown class="col-md-12">
                     <script type="text/template">
-                        ## Firebase as hosting and Server side handling
+                        ## Common HTML pattern reusability
+                        * Lot of development time, reused common html patterns requiring copy and paste, after applying javascript functionality
+                        by using dom selectors.
 
-                        Firebase is very useful, to use as web hosting. They provide Authentication, hosting for static assets, and cloud functions.
-                        In cloud functions have full `Nodejs` environment, and working with `Express` API.
+                        * Another common use case is generate templates as strings, and then apply to dom, and after again apply javascript.
 
-                        Not for all projects Firebase fully fit in to requirements, but in those projects can use same practice.
-
-                        Server side still supporting, browsers with no service workers.
-                        And because `Nodejs` and `FIrebase-functions` working on javascript, we use same code for `Nodejs` and  `service workers`.
-
-                    </script>
-                </div>
-            </section>
-        </section>
-        <section>
-            <section>
-                <div data-markdown class="col-md-12">
-                    <script type="text/template">
-                        ## Nodejs/Express as backend
-
-                        - Server side rendering
-                        - Authentication
-                        - REST API
+                        * Problems for both these approaches, in first you have to repeat html, and control javascript multiple times,
+                        on second is difficult to manage lifecycle, like events. Another problem is by adding and removing items, based on application behaviour.
 
                     </script>
                 </div>
@@ -115,17 +112,275 @@
             <section>
                 <div data-markdown class="col-md-12">
                     <script type="text/template">
-                        ## Server Side Rendering
+                        * In StoneWall, have unique templating system, inside  html you use reference to module only. Any module has own html. In this case,
+                        no need repeat same html again and again. This is very great for changes.
 
-                        For server side rendering, we can't use only `Express`. There important is
-                        to use same code in `service workers`, and `Express` are not built for client apps.
-                        For isomporphic app handling, we created few utilities.
+                        * You no need to use selectors, for manipulating dom, you have direct reference to the element.
+                        This approach make your app much easier to use.
 
-                        - For asynchronous code composition [https://github.com/gunins/functional](https://github.com/gunins/functional).
-                        - For route handling [https://github.com/gunins/service-worker-router](https://github.com/gunins/service-worker-router).
-                            Router, we use on top of `Express` on back end, on `service worker` with simple adapter.
+                        * Regards to adding and removing elements, there is very easy data binding api.
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Routing
+                        * One of important parts for single page applications is routing (URL handling). Easiest way is
+                        root urls, with page change. But what's about nested URIs? For example,
+                        you use same component on different pages, but this component handling own URIs. In common practice
+                        this common component not common any more, because there requiring cod injection.
 
-                        Both of those utilities we will review in next slides.
+                        * Not in StoneWall, StoneWall, have a nested routing manipulation, any component can take own URIs,
+                        and controlling only it's own part.
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Client server communication
+                        * Stonewall by concept is asynchronous, all server response is easy to maintain.
+
+                        * Because in StoneWall have very good eventBus support, all ajax, websockets, SSE etc. you can control
+                        from single point of entry, and even use web workers, shared workers or even service workers.
+
+                        * From this entry you can apply to certain part on your app, by using eventBus. Using this approach,
+                        you can easy add remove or change different app components, because they only aware to about events,
+                        not the structure.
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Reusable modules
+                        * Each module, you can publish in npm, bower or any other package mechanism. Also modules can use different dependencies.
+
+                        * In this way you, just add, your modules in to package manager, and on compile time, all packages will be automatically compiled.
+
+                        * This great mechanism, allow you to use third party modules, or in large projects use same modules across the teams,
+                        and full version control.
+                    </script>
+                </div>
+            </section>
+        </section>
+        <section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Templating
+
+                        HTML close syntax
+
+                        Scoped css + Less Support
+
+                        Direct access to elements, no need selectors
+
+                        Runtime environment
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## HTML Close Syntax
+                    </script>
+                </div>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ```xml
+                        <div class="container-fluid cmp">
+                            <style>
+                                img {
+                                    border: solid 2px #337ab7;
+                                    width: 100%;
+                                }
+                            </style>
+                            <pl-header tp-tag="h4"></pl-header>
+                            <img tp-name="image" tp-type="pl" tp-bind-src="image" alt="Image"/>
+                            <p>sample text</p>
+                            <pl-body></pl-body>
+                        </div>
+                        ```
+                    </script>
+                </div>
+                <div data-markdown class="col-md-6">
+                    <script type="text/template">
+                        * Full HTML support
+                        * Custom elements availability
+                    </script>
+                </div>
+                <div data-markdown class="col-md-6">
+                    <script type="text/template">
+                        * CSS can type directly in template
+                        * Any css will be only valid for these elements
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Supported Templating tags
+
+                        * AMD module id is defined by `src` attribute. data attributes are supported.
+
+                        ```xml
+                        <cp-name src="moduleId" data-size="500"></cp-name>
+                        ```
+                        * Placeholders, defining custom content in to module. Inside module is used where will be placed,
+                        by importing define content to be replaced. Inside module can add default content. For custom tags need to define
+                        by `tp-tag` attribute.
+
+                        ```xml
+                        <pl-elname tp-tag="p">Default or custom <strong>content</strong></pl-elname>
+                        ```
+                        * Data bindings, is used for binding data. Component data is applied to binding tag.
+                        For arrays automatically recognise. `tp-update` attribute will watch object changes, `tp-bind-attr-name`,
+                        define binding for atrribute, `data-name` take object attribute to bind, if this attribute not defined, taking name.
+
+                        ```xml
+                        <bd-somename tp-bind-class="class">
+                            <bd-child tp-update="true"></bd-child>
+                        </bd-somename>
+                        ```
+                        * Routing tags is created, for supporting url trigger. There available static routes and dynamic.
+                        Routing is implemented using [URL Manager](https://github.com/gunins/urlmanager).
+
+                        ```xml
+                        <rt-test rt="/test">There content for test route</rt-test>
+                        <rt-profile rt="/profile/:id">
+                            <h2>There content for profile info</h2>
+                            <bd-info></bd-info>
+                        </rt-profile>
+                        ```
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Scoped CSS + Lesss Support
+                    </script>
+                </div>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ```less
+                        .body{
+                        h2{
+                        font-size: 2em;
+                        }
+                        p{
+                        font-size:1.3em;
+                        }
+                        }
+                        ```
+                    </script>
+                </div>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        * Templating fully supporting [Less](http://lesscss.org/), including imports.
+                        * Any template tag will generate unique id and css property use the reference to this.
+                        * This means any css property is valid only for this particular template.
+
+                        <small>For example, if you use common css namings like **.hide, .show** they'll not
+                            override
+                            another components on the page.
+                        </small>
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div class="col-md-12" data-markdown>
+                    <script type="text/template">
+                        ## Direct Access to Elements
+
+                        ```xml
+                        <div>
+                            <pl-header tp-tag="h4"></pl-header>
+                            <p tp-name="paragraph">sample text</p>
+                        </div>
+                        ```
+                        After template rendering DOM, any tag which contains `tp-name` or
+                        custom tag after dash `pl-header` return these elements. any of these elements are available in `children[name]`
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div class="col-md-12" data-markdown>
+                    <script type="text/template">
+                        ### Runtime environment
+                        In production will use precompiled templates, this significantly will increase application perfomance.
+                        Below you see the difference between development and production.
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div class="col-md-12">
+                    <img src=" https://raw.githubusercontent.com/gunins/richtemplate/master/docs/images/prod_dev.jpg"
+                         alt="Templating Environment">
+                </div>
+            </section>
+        </section>
+        <section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Reusable Components
+
+                        Any template as component
+
+                        Using components
+
+                        Placeholders
+
+                        Attributes to components
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ##  Any template as component
+                        Any template can be used as component.
+                        Below is component example with some css styles, and placeholders with default values.
+                    </script>
+                </div>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ```xml
+                        <div class="panel">
+                            <style-less>
+                                .panel {
+                                    border: solid 1pc #ccc;
+                                    &-header {
+                                        font-weight: bold;
+                                        border-bottom: solid 1px;
+                                    }
+                                    &-body {
+                                        padding: 10px 15px;
+                                    }
+                                }
+                            </style-less>
+                            <pl-header class="panel-header">Default Header</pl-header>
+                            <pl-body class="panel-body">Default Body</pl-body>
+                        </div>
+                        ```
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ##  Using Components
+                        To use this component above need tag `cp` and name after `-` names are unique in each template.
+                        and `src` is location to component.
+
+                        ```xml
+                        <div>
+                            <cp-panel src="./panel"></cp-panel>
+                        </div>
+                        ```
 
                     </script>
                 </div>
@@ -133,8 +388,37 @@
             <section>
                 <div data-markdown class="col-md-12">
                     <script type="text/template">
-                        ## Authentication
+                        ##  Using placeholders
+                        In example above was placeholders with default values. Below is example how to change placeholder content.
 
+                        ```xml
+                        <div>
+                            <cp-panel src="./panel">
+                                <pl-header>Panel Header</pl-header>
+                                <pl-body>
+                                    <p>Panel Body text</p>
+                                </pl-body>
+                            </cp-panel>
+                        </div>
+                        ```
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        You can use another components in placeholders also.
+
+                        ```xml
+                        <div>
+                            <cp-panel src="./panel">
+                                <pl-header>Panel Header</pl-header>
+                                <pl-body>
+                                    <cp-component src="./component"></cp-component>
+                                </pl-body>
+                            </cp-panel>
+                        </div>
+                        ```
 
                     </script>
                 </div>
@@ -142,8 +426,19 @@
             <section>
                 <div data-markdown class="col-md-12">
                     <script type="text/template">
-                        ## REST API
+                        ## Attributes to Components
 
+                        ```xml
+                        <div>
+                            <cp-panel data-width="150" data-height="100" src="./panel">
+                                <pl-header>Panel Header</pl-header>
+                                <pl-body>
+                                    <cp-component src="./component"></cp-component>
+                                </pl-body>
+                            </cp-panel>
+                        </div>
+                        ```
+                        As in example you all defined attributes are available in to your component class.
                     </script>
                 </div>
             </section>
@@ -152,86 +447,168 @@
             <section>
                 <div data-markdown class="col-md-12">
                     <script type="text/template">
-                        ## Code Handling
-                        - Functional Tasks
-                        - Route Handling
+                        ## Data First Approach
+
+                        Data binding
+
+                        Data example in Component
+
+                        Using data bindings
+
+                        Using Components in bindings
+
 
                     </script>
                 </div>
             </section>
-        </section>
-        <section>
-            <div data-markdown class="col-md-12">
-                <script type="text/template">
-                    ## Database Remote | Local
-                    - firebase realtime database
-                    - indexedDB in browser
+            <section>
+                <div class="row">
+                    <div data-markdown class="col-md-12">
+                        <script type="text/template">
+                            ## Data Binding
 
-                </script>
-            </div>
-        </section>
-        <section>
-            <div data-markdown class="col-md-12">
-                <script type="text/template">
-                    ## Adapters
-                    - As cloud-functions
-                    - as Nodejs
-                    - in service workers
+                            * Built in data binding, makes apps very easy to use.
+                            * Define data inside Component, and use binding in temlapte
+                        </script>
+                    </div>
+                    <div data-markdown class="col-md-6">
+                        <script type="text/template">
+                            ```javascript
+                            ...
 
-                </script>
-            </div>
-        </section>
-        <section>
-            <div data-markdown class="col-md-12">
-                <script type="text/template">
-                    ## App Structure
-                    - Controllers/Pages
-                    - Models - data handlers
-                    - Widgets reusable components on page
+                            beforeInit(){
+                            this.data={
+                            header:'This is Header',
+                            body:'this is body'
+                            }
+                            }
 
-                </script>
-            </div>
-        </section>
-        <section>
-            <div data-markdown class="col-md-12">
-                <script type="text/template">
-                    ## CSS naming convention
+                            ...
+                            ```
+                        </script>
+                    </div>
+                    <div data-markdown class="col-md-6">
+                        <script type="text/template">
+                            ```xml
+                            <div>
+                                <bd-header></bd-header>
+                                <bd-body></bd-body>
+                            </div>
+                            ```
+                        </script>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div data-markdown class="col-md-12">
+                        <script type="text/template">
+                            ## Data example in Component
+                            * Inside component you can inherit data from parent, or load externally.
+                            * In Component class `beforeInit` method allow you to manipulate data if necessary.
+                            * On example left is default behaviour, on right is how to bind to different attributes.
+                        </script>
+                    </div>
+                    <div data-markdown class="col-md-6">
+                        <script type="text/template">
+                            ```javascript
+                            ...
 
-                </script>
-            </div>
-        </section>
-        <section>
-            <div data-markdown class="col-md-12">
-                <script type="text/template">
-                    ## Client side javascript tips
+                            beforeInit(attrs, parent, data){
+                                this.data = data
+                            }
 
-                </script>
-            </div>
-        </section>
-        <section>
-            <div data-markdown class="col-md-12">
-                <script type="text/template">
-                    ## Things to think before taking any framework
+                            ...
 
-                </script>
-            </div>
-        </section>
-        <section>
-            <div data-markdown class="col-md-12">
-                <script type="text/template">
-                    ## Splitting app in scopes
+                            ```
+                        </script>
+                    </div>
+                    <div data-markdown class="col-md-6">
+                        <script type="text/template">
+                            ```javascript
+                            ...
 
-                </script>
-            </div>
-        </section>
-        <section>
-            <div data-markdown class="col-md-12">
-                <script type="text/template">
-                    ## Older Browser Support
+                            beforeInit(attrs, parent, data){
+                                this.data = {
+                                    title:  data.name,
+                                    body:   data.text
+                                }
+                            }
 
-                </script>
-            </div>
+                            ...
+
+                            ```
+                        </script>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div data-markdown class="col-md-12">
+                        <script type="text/template">
+                            ## Using data bindings
+                            * To use data bindings is easy, just define name after `-` which you want to bind.
+                            * There also nested structure is supported. For Arrays no need special tags, framework automatically support.
+                            * Auto update is also supported, use `tp-update="true"` tag.
+                            * For custom tags need to add `tp-tag="p"`
+                            * To bind attributes need add `tp-bind-href="link"` where `href` is attribute and link is reference to object.
+
+                            ```xml
+                            <div>
+                                <bd-parent>
+                                    <bd-children></bd-children>
+                                </bd-parent>
+                                <bd-footer></bd-footer>
+                            </div>
+
+                            ```
+
+                            ```xml
+                            <div>
+                                <bd-list tp-tag="li">
+                                    <bd-link tp-tag="a" tp-bind-href="href">
+                                        <bd-counter tp-tag="span" tp-update="true"></bd-counter>
+                                    </bd-link>
+                                </bd-list>
+                            </div>
+                            ```
+                        </script>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="row">
+                    <div data-markdown class="col-md-12">
+                        <script type="text/template">
+                            ## Using Components in data bindings
+                            * If in bindings you want to use components you can do this.
+                            * Also in components, you can bind specific data to that component
+                            * Or all binded data will be available in component
+
+                            ```xml
+                            <div>
+                                <bd-parent>
+                                    <cp-children src="children/Children"></cp-children>
+                                </bd-parent>
+                            </div>
+
+                            ```
+
+                            ```xml
+                            <div>
+                                <bd-list tp-tag="li">
+                                    <bd-link tp-tag="a" tp-bind-href="href">
+                                        <cp-counter data-bind="counter" src="counter/Counter"></cp-counter>
+                                    </bd-link>
+                                </bd-list>
+                            </div>
+                            ```
+                        </script>
+                    </div>
+                </div>
+            </section>
         </section>
+
     </div>
 </div>
 <script src="../node_modules/reveal.js/lib/js/head.min.js"></script>

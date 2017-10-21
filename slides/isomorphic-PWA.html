@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/moon.css">
+    <link rel="stylesheet" href="../node_modules/highlight.js/styles/googlecode.css">
+
+    <style>
+        .reveal {
+            font-size: 24px;
+        }
+
+        .reveal ul {
+            display: block;
+        }
+
+        .reveal li {
+            text-align: left;
+        }
+
+        .reveal code.hljs {
+            font-size: 140%;
+        }
+
+        .reveal code:not(.hljs) {
+            font-size: 60%;
+            padding: 0 10px;
+            vertical-align: middle;
+        }
+    </style>
+
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <div data-markdown class="col-md-12">
+                <script type="text/template">
+                    ## Guntars Simanskis
+                    Scalable JavaScript, PWA (Progressive Web Applications).
+
+                    <small>Guntars Simanskis [Twitter](https://twitter.com/simanskis),
+                        [Github](https://github.com/gunins)
+                    </small>
+                </script>
+            </div>
+        </section>
+        <section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Overview
+                        - Background
+                        - Why PWA
+                        - Be ready with service workers
+                        - Firebase as hosting and Server side handling
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Background
+                        Based on previous experience, before service workers, client app concept was on MV* client libraries
+                        such as Backbone, React, Angular etc. But all of them, works with same script, and not reloading page.
+
+                        - Fist load, for all dependencies taking good chunk of time.
+                        -  By adding more functionality, app will slowing.
+                        - Not the best for mobile.
+
+                        For some application parts to use framework still very useful, but not necessary to use on all pages in app.
+                        Since service workers and http2 protocol are available, app can work in offline mode.
+                        Faster and easier is to reload entire page instead to try handle this with some framework.
+
+                        There is also another advantage, because each page has small functionality,
+                        You can easy migrate from one framework to another, without big impact in environment.
+
+                        Good example is Angular 1,2,3 all of them are not backwards compatible, more complex you have app, more difficult is to migrate.
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Why PWA (Progressive Web App)
+                        ### Key points from Chrome developers:
+                        **Reliable** - Load instantly and never show the dinosaur, even in uncertain network conditions.
+
+                        **Fast** - Respond quickly to user interactions with silky smooth animations and no janky scrolling.
+
+                        **Engaging** - Feel like a natural app on the device, with an immersive user experience.
+
+                        Each page has some small concrete functionality, and easy intuitive navigation.
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Be ready with service workers
+
+                        By using service workers, you can catch all fetch events, and use network requests, only for necessary tasks.
+
+                        App still usable, with no internet connection at all. With Service Worker app cache, you can store all static assets on client.
+
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Firebase as hosting and Server side handling
+
+                        Firebase is very useful, to use as web hosting. They provide Authentication, hosting for static assets, and cloud functions.
+                        In cloud functions have full `Nodejs` environment, and working with `Express` API.
+
+                        Not for all projects Firebase fully fit in to requirements, but in those projects can use same practice.
+
+                        Server side still supporting, browsers with no service workers.
+                        And because `Nodejs` and `FIrebase-functions` working on javascript, we use same code for `Nodejs` and  `service workers`.
+
+                    </script>
+                </div>
+            </section>
+        </section>
+        <section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Nodejs/Express as backend
+
+                        - Server side rendering
+                        - Authentication
+                        - REST API
+
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Server Side Rendering
+
+                        For server side rendering, we can't use only `Express`. There important is
+                        to use same code in `service workers`, and `Express` are not built for client apps.
+                        For isomporphic app handling, we created few utilities.
+
+                        - For asynchronous code composition [https://github.com/gunins/functional](https://github.com/gunins/functional).
+                        - For route handling [https://github.com/gunins/service-worker-router](https://github.com/gunins/service-worker-router).
+                        Router, we use on top of `Express` on back end, on `service worker` with simple adapter.
+
+                        Both of those utilities we will review in next slides.
+
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Authentication
+
+
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## REST API
+
+                    </script>
+                </div>
+            </section>
+        </section>
+        <section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Code Handling
+                        - Functional Tasks
+                        - Route Handling
+
+                    </script>
+                </div>
+            </section>
+        </section>
+        <section>
+            <div data-markdown class="col-md-12">
+                <script type="text/template">
+                    ## Database Remote | Local
+                    - firebase realtime database
+                    - indexedDB in browser
+
+                </script>
+            </div>
+        </section>
+        <section>
+            <div data-markdown class="col-md-12">
+                <script type="text/template">
+                    ## Adapters
+                    - As cloud-functions
+                    - as Nodejs
+                    - in service workers
+
+                </script>
+            </div>
+        </section>
+        <section>
+            <div data-markdown class="col-md-12">
+                <script type="text/template">
+                    ## App Structure
+                    - Controllers/Pages
+                    - Models - data handlers
+                    - Widgets reusable components on page
+
+                </script>
+            </div>
+        </section>
+        <section>
+            <div data-markdown class="col-md-12">
+                <script type="text/template">
+                    ## CSS naming convention
+
+                </script>
+            </div>
+        </section>
+        <section>
+            <div data-markdown class="col-md-12">
+                <script type="text/template">
+                    ## Client side javascript tips
+
+                </script>
+            </div>
+        </section>
+        <section>
+            <div data-markdown class="col-md-12">
+                <script type="text/template">
+                    ## Things to think before taking any framework
+
+                </script>
+            </div>
+        </section>
+        <section>
+            <div data-markdown class="col-md-12">
+                <script type="text/template">
+                    ## Splitting app in scopes
+
+                </script>
+            </div>
+        </section>
+        <section>
+            <div data-markdown class="col-md-12">
+                <script type="text/template">
+                    ## Older Browser Support
+
+                </script>
+            </div>
+        </section>
+    </div>
+</div>
+<script src="../node_modules/reveal.js/lib/js/head.min.js"></script>
+<script src="../node_modules/reveal.js/js/reveal.js"></script>
+
+<script>
+    Reveal.initialize({
+        controls:     true,
+        progress:     true,
+        history:      true,
+        center:       true,
+        width:        1200,
+//        height:       900,
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            {
+                src:       '../node_modules/reveal.js/lib/js/classList.js',
+                condition: function() {
+                    return !document.body.classList;
+                }
+            },
+            {
+                src:       '../node_modules/reveal.js/plugin/markdown/marked.js',
+                condition: function() {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            },
+            {
+                src:       '../node_modules/reveal.js/plugin/markdown/markdown.js',
+                condition: function() {
+                    return !!document.querySelector('[data-markdown]');
+                }
+            },
+            {
+                src:      '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true,
+                callback: function() {
+                    hljs.initHighlightingOnLoad();
+                }
+            },
+            {src: '../node_modules/reveal.js/plugin/notes/notes.js'}
+        ]
+    });
+</script>
+
+<script>
+    Reveal.initialize();
+</script>
+</body>
+</html>
