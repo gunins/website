@@ -62,21 +62,23 @@
                 <div data-markdown class="col-md-12">
                     <script type="text/template">
                         ## Background
-                        Based on previous experience, before service workers, client app concept was on MV* client libraries
+                        Before service workers, client app concept was on MV* client libraries
                         such as Backbone, React, Angular etc. But all of them, works with same script, and not reloading page.
 
                         - Fist load, for all dependencies taking good chunk of time.
-                        -  By adding more functionality, app will slowing.
+                        - By adding more functionality, app will slowing.
                         - Not the best for mobile.
 
-                        For some application parts to use framework still very useful, but not necessary to use on all pages in app.
-                        Since service workers and http2 protocol are available, app can work in offline mode.
-                        Faster and easier is to reload entire page instead to try handle this with some framework.
+                        For some application parts to use some frameworks still very useful, but not necessary to use on all pages in app.
+                        Since service workers and http2 protocol are available, app can work in offline mode, also native es6 javascript
+                        makes coding easier.
+                        With correct client side handling reload entire page, taking so short time 50-100ms, sometimes even less.
+                        Means there, for different page functionality, not necessary to keep single page app concept.
 
                         There is also another advantage, because each page has small functionality,
                         You can easy migrate from one framework to another, without big impact in environment.
 
-                        Good example is Angular 1,2,3 all of them are not backwards compatible, more complex you have app, more difficult is to migrate.
+                        Good example is Angular 1,2,4 all of them are not backwards compatible, more complex you have app, more difficult is to migrate.
                     </script>
                 </div>
             </section>
@@ -103,6 +105,8 @@
                         By using service workers, you can catch all fetch events, and use network requests, only for necessary tasks.
 
                         App still usable, with no internet connection at all. With Service Worker app cache, you can store all static assets on client.
+
+                        Also there is another advantage, browsers who still not have a service worker support, will handle fetch by server.
 
                     </script>
                 </div>
@@ -226,12 +230,15 @@
             </div>
         </section>
         <section>
-            <div data-markdown class="col-md-12">
-                <script type="text/template">
-                    ## Client side javascript tips
-
-                </script>
-            </div>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Client side javascript tips
+                        - Organizing code
+                        - Desktop | Mobile | Tablet | Phone
+                    </script>
+                </div>
+            </section>
         </section>
         <section>
             <div data-markdown class="col-md-12">
