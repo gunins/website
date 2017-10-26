@@ -135,6 +135,7 @@
                         ## Nodejs/Express as backend
 
                         - Server side rendering
+                        - Client side rendering
                         - Authentication
                         - REST API
 
@@ -162,7 +163,29 @@
             <section>
                 <div data-markdown class="col-md-12">
                     <script type="text/template">
+                        ## Client Side Rendering
+
+                        For client side rendering, we catching all fetch events. Inside with router, described in previous section,
+                        we filtering route, if route exists in path, we respond local data, if not, passing data to network.
+
+                        Service Worker on client, doing most of server side job. And there no need to use network request for each
+                        data request. Also, for browsers who support service workers, giving offline experience.
+
+                        All static assets, we caching, by use caching API. And for remote local data synchronisation we use sync API.
+
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
                         ## Authentication
+
+                        For authentication we use, server side firebase authentication. Doing on client, will take too many scripts, for this basic functionality.
+
+                        If app is offline, app not use remote data. When online, db sync use rest api. On server side validate client. If token is expired, we updating token.
+
+                        In REST API,  user is restricted to access only his related data.
 
 
                     </script>
@@ -172,6 +195,143 @@
                 <div data-markdown class="col-md-12">
                     <script type="text/template">
                         ## REST API
+
+                        Rest API we have in two levels.
+
+                        One for synchronise data Remote/Local an available only on server.
+                        Server side data is accessible with `/api/v1` prefix.
+
+                        One for Easy access data, Isomorphic, is in service worker scope.
+
+                    </script>
+                </div>
+            </section>
+        </section>
+        <section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Database Remote | Local
+                        - firebase realtime database
+                        - indexedDB in browser
+
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Firebase Realtime database
+
+                        Firebase API, is JSON related, and firebase are not supporting arrays, everything is an objects.
+                        But because we want to use same API for firebase and indexedDB, need to treat firebase as key/value, but indexedDB everything as Objects.
+
+                        In environment where is different storage mechanisms, to make possible use same codebase for server and client (service worker), need adapters.
+
+                        In this case, we have adapter for firebase API. All methods in this adapter is asynchronous, because any remote
+                        access API is asynchronous by nature.
+
+                        We injecting adapters in code initialisation, and then use inside in app.
+
+                        P.S. Firebase introduce new database "Firestore" With new API, and better performance. In later stage we need to move on new database,
+                        where will have new adapter.
+
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## IndexedDB as local database
+
+                        One of challenges for indexedDB API, is not user friendly. There adapter will do two things, nicer API
+                        and of course as adapter for our isomorphic app.
+
+                        Need to know, indexedDB supporting arrays, but for comparability with firebase, need to store everything as objects.
+
+
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Adapter use example
+                    </script>
+                </div>
+                <div data-markdown class="col-md-6">
+                    <script type="text/template">
+                        ### indexedDB
+                        ```javascript
+                        ...
+
+                        const db = clientDB('db', 1, indexedDB);
+
+                        ...
+
+                        ```
+                    </script>
+                </div>
+                <div data-markdown class="col-md-6">
+                    <script type="text/template">
+                        ### firebase
+
+                        ```javascript
+                        ...
+
+                        const firebase = admin.database();
+
+                        const db = firebaseDB('db, 1, firebase);
+
+                        ...
+
+                        ```
+                    </script>
+                </div>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        And below, use standard code for indexedDB and firebase.
+
+                        ```javascript
+                        ...
+
+                        const objectStore = await  db.createObjectStore('userSession', {keyPath: 'idToken'});
+
+                        const userMap = await objectStore('readonly');
+
+                        const activeUserData = await userMap.get(token);
+                        ...
+
+                        ```
+
+                        In this example, you can see, how to use same API in firebase and indexedDB.
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Synchronisation
+
+                        In application, we use offline first approach. And in service worker API is sync event.
+                        We simply hook to this event, and synchronise any time network is available.
+
+                        ```javascript
+                        ...
+
+                            self.addEventListener('sync', (event) => {
+
+                                if (event.tag === 'db-sync') {
+
+                                    event.waitUntil(sync());
+
+                                }
+
+                            });
+
+                        ...
+
+                        ```
 
                     </script>
                 </div>
@@ -184,6 +344,91 @@
                         ## Code Handling
                         - Functional Tasks
                         - Route Handling
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Functional Tasks
+
+                        This small functional library, for easier Promise/async function handling.
+                        Is similar to pipes, and use [Railway Oriented Programming](http://www.zohaib.me/railway-programming-pattern-in-elixir) concept.
+
+                        ![validation](./images/Screenshot-2015-03-23-01-12-45.png)
+
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Router
+
+                        Nodejs and Service Worker lazy router. Difference from other routers eg (express).
+                        This router we will work in (express) and service workers.
+
+                        router initialisation
+                        ```javascript
+                        ...
+
+                            const app = req => route.trigger(req)
+
+                                .map(({req, resp}, res, rej) => !req.match ? rej() : res(resp))
+
+                                .map(({content, contentType}) => ({content, contentType}))
+
+                                .unsafeRun();
+
+                        ```
+
+
+                    </script>
+                </div>
+            </section><section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        Example in express
+
+
+                        ```javascript
+
+                            express.use((req, res, next) => app(await prepareServerFetch(req)))
+
+                                .then(({content}) => res.send(content))
+
+                                .catch(() => next()));
+
+                        ```
+
+                        In service Workers
+
+                        ```javascript
+
+                            self.addEventListener('fetch', event => {
+
+                                event.respondWith(new Promise(async (res) => {
+
+                                    const {request} = event;
+
+                                    const {cookie} = self;
+
+                                    const req = await prepareClientFetch(request);
+
+                                    app(req)
+
+                                        .then(resp => res(new Response(resp.content, htmlHeader())))
+
+                                        .catch(() => res(fetch(request)));
+
+                                }));
+                            });
+
+
+                        ```
+
+                        If router will find the route, respond back to client, custom content, else fetch original.
+                        In express, could be REST or static assets, in service workers is good to test cache, before accessing network.
 
                     </script>
                 </div>
@@ -192,20 +437,10 @@
         <section>
             <div data-markdown class="col-md-12">
                 <script type="text/template">
-                    ## Database Remote | Local
-                    - firebase realtime database
-                    - indexedDB in browser
-
-                </script>
-            </div>
-        </section>
-        <section>
-            <div data-markdown class="col-md-12">
-                <script type="text/template">
-                    ## Adapters
-                    - As cloud-functions
-                    - as Nodejs
-                    - in service workers
+                    ## App execution
+                    - In Nodejs
+                    - In firebase cloud-functions
+                    - service workers
 
                 </script>
             </div>
