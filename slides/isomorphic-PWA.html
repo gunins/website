@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../node_modules/reveal.js/css/reveal.css">
-    <link rel="stylesheet" href="../node_modules/reveal.js/css/theme/moon.css">
-    <link rel="stylesheet" href="../node_modules/highlight.js/styles/googlecode.css">
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/reveal.css">
+    <link rel="stylesheet" href="assets/moon.css">
+    <link rel="stylesheet" href="assets/googlecode.css">
 
     <style>
         .reveal {
@@ -624,8 +624,8 @@
         </section>
     </div>
 </div>
-<script src="../node_modules/reveal.js/lib/js/head.min.js"></script>
-<script src="../node_modules/reveal.js/js/reveal.js"></script>
+<script src="assets/lib/js/head.min.js"></script>
+<script src="assets/js/reveal.js"></script>
 
 <script>
     Reveal.initialize({
@@ -638,30 +638,30 @@
         // Optional libraries used to extend on reveal.js
         dependencies: [
             {
-                src:       '../node_modules/reveal.js/lib/js/classList.js',
+                src:       'assets/lib/js/classList.js',
                 condition: function() {
                     return !document.body.classList;
                 }
             },
             {
-                src:       '../node_modules/reveal.js/plugin/markdown/marked.js',
+                src:       'assets/plugin/markdown/marked.js',
                 condition: function() {
                     return !!document.querySelector('[data-markdown]');
                 }
             },
             {
-                src:       '../node_modules/reveal.js/plugin/markdown/markdown.js',
+                src:       'assets/plugin/markdown/markdown.js',
                 condition: function() {
                     return !!document.querySelector('[data-markdown]');
                 }
             },
             {
-                src:      '../node_modules/reveal.js/plugin/highlight/highlight.js', async: true,
+                src:      'assets/plugin/highlight/highlight.js', async: true,
                 callback: function() {
                     hljs.initHighlightingOnLoad();
                 }
             },
-            {src: '../node_modules/reveal.js/plugin/notes/notes.js'}
+            {src: 'assets/plugin/notes/notes.js'}
         ]
     });
 </script>
