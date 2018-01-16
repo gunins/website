@@ -67,17 +67,18 @@
                         such as Backbone, React, Angular etc. But all of them, works with same script, and not reloading page.
 
                         - Fist load, for all dependencies taking good chunk of time.
-                        - By adding more functionality, app will slowing.
+                        - By adding more functionality, app becomes slower.
                         - Not the best for mobile.
 
                         For some application parts to use some frameworks still very useful, but not necessary to use on all pages in app.
                         Since service workers and http2 protocol are available, app can work in offline mode, also native es6 javascript
                         makes coding easier.
+
                         With correct client side handling reload entire page, taking so short time 50-100ms, sometimes even less.
                         Means there, for different page functionality, not necessary to keep single page app concept.
 
                         There is also another advantage, because each page has small functionality,
-                        You can easy migrate from one framework to another, without big impact in environment.
+                        You can easy migrate from one framework to another, without big impact in environment, or even use multiple frameworks in same app.
 
                         Good example is Angular 1,2,4 all of them are not backwards compatible, more complex you have app, more difficult is to migrate.
                     </script>
@@ -88,6 +89,7 @@
                     <script type="text/template">
                         ## Why PWA (Progressive Web App)
                         ### Key points from Chrome developers:
+
                         **Reliable** - Load instantly and never show the dinosaur, even in uncertain network conditions.
 
                         **Fast** - Respond quickly to user interactions with silky smooth animations and no janky scrolling.
@@ -123,7 +125,8 @@
                         Not for all projects Firebase fully fit in to requirements, but in those projects can use same practice.
 
                         Server side still supporting, browsers with no service workers.
-                        And because `Nodejs` and `FIrebase-functions` working on javascript, we use same code for `Nodejs` and  `service workers`.
+                        And because `Nodejs` and `FIrebase-functions` working on javascript, we use same isomorphic approach for code,
+                        `Nodejs` and  `service workers` will use same code base, and fetch/request we handle true adapters.
 
                     </script>
                 </div>
@@ -166,13 +169,14 @@
                     <script type="text/template">
                         ## Client Side Rendering
 
-                        For client side rendering, we catching all fetch events. Inside with router, described in previous section,
+                        For client side rendering, we catching all fetch events. Inside with router, described in previous slide,
                         we filtering route, if route exists in path, we respond local data, if not, passing data to network.
 
-                        Service Worker on client, doing most of server side job. And there no need to use network request for each
-                        data request. Also, for browsers who support service workers, giving offline experience.
+                        Service Worker is fast, and no need network request for page rendering.
 
-                        All static assets, we caching, by use caching API. And for remote local data synchronisation we use sync API.
+                        By using fetch event we catch all network requests, and return custom response, for static assets respond from app cache,
+                        for custom pages render inside Service Worker, and if necessary fetch only required data via REST API, or load from local indexedDB.
+                        By using this approach full page reload will be extremely fast. Sometimes even faster than single page app.
 
                     </script>
                 </div>
@@ -182,13 +186,10 @@
                     <script type="text/template">
                         ## Authentication
 
-                        For authentication we use, server side firebase authentication. Doing on client, will take too many scripts, for this basic functionality.
+                        For authentication we use, server side firebase authentication. Means on client no need to load
+                        big firebase library.
 
-                        If app is offline, app not use remote data. When online, db sync use rest api. On server side validate client. If token is expired, we updating token.
-
-                        In REST API,  user is restricted to access only his related data.
-
-
+                        Hopefully in future firebase will use es6 modules for firebase.
                     </script>
                 </div>
             </section>
@@ -197,12 +198,10 @@
                     <script type="text/template">
                         ## REST API
 
-                        Rest API we have in two levels.
+                        We have REST API service for synchronising data, and updating data. Also for some live remote data.
 
-                        One for synchronise data Remote/Local an available only on server.
-                        Server side data is accessible with `/api/v1` prefix.
-
-                        One for Easy access data, Isomorphic, is in service worker scope.
+                        For faster response time, we synchronise all data in background, but response to client coming from indexedDB.
+                        There app will have same speed on slow networks, no networks or fast networks.
 
                     </script>
                 </div>
@@ -224,17 +223,17 @@
                     <script type="text/template">
                         ## Firebase Realtime database
 
-                        Firebase API, is JSON related, and firebase are not supporting arrays, everything is an objects.
+                        Firebase Realtime Database, is JSON related, and firebase are not supporting arrays, everything is an objects.
                         But because we want to use same API for firebase and indexedDB, need to treat firebase as key/value, but indexedDB everything as Objects.
 
                         In environment where is different storage mechanisms, to make possible use same codebase for server and client (service worker), need adapters.
 
-                        In this case, we have adapter for firebase API. All methods in this adapter is asynchronous, because any remote
+                        In this case, we have adapter for firebase API. All methods in this adapter should be asynchronous, because any remote
                         access API is asynchronous by nature.
 
-                        We injecting adapters in code initialisation, and then use inside in app.
+                        We injecting adapters in code implicitly, and then use inside in app.
 
-                        P.S. Firebase introduce new database "Firestore" With new API, and better performance. In later stage we need to move on new database,
+                        P.S. Firebase introduced new database "Firestore" with new API, and better performance. In later stage we need to move on new database,
                         where will have new adapter.
 
                     </script>
@@ -369,7 +368,25 @@
                         Nodejs and Service Worker lazy router. Difference from other routers eg (express).
                         This router we will work in (express) and service workers.
 
-                        router initialisation
+                        First Router will take Request Object. All properties in request Object is available everywhere in app.
+                        Request Object is not editable. All modified data, you add in response Object.
+
+
+
+                        ```javascript
+
+                            const req = {
+                                db, //database with adapter
+                                host, // host
+                                body, // request body (optional)
+                                next, // uri path
+                                method, // method (GET,POST,PUT ...)
+                                search // query params (optional)
+                            }
+
+                        ```
+
+                        Then initialise router.
                         ```javascript
                         ...
 
@@ -382,13 +399,15 @@
                                 .unsafeRun();
 
                         ```
-
+                        More info  [https://github.com/gunins/service-worker-router](https://github.com/gunins/service-worker-router)
 
                     </script>
                 </div>
             </section><section>
                 <div data-markdown class="col-md-12">
                     <script type="text/template">
+                        ## Adapter examples
+
                         Example in express
 
 
@@ -436,34 +455,58 @@
             </section>
         </section>
         <section>
-            <div data-markdown class="col-md-12">
-                <script type="text/template">
-                    ## App execution
-                    - In Nodejs
-                    - In firebase cloud-functions
-                    - service workers
-
-                </script>
-            </div>
-        </section>
-        <section>
+            <section>
             <div data-markdown class="col-md-12">
                 <script type="text/template">
                     ## App Structure
-                    - Controllers/Pages
                     - Models - data handlers
                     - Widgets reusable components on page
-
+                    - Controllers/Pages
                 </script>
             </div>
-        </section>
-        <section>
-            <div data-markdown class="col-md-12">
-                <script type="text/template">
-                    ## CSS naming convention
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Models - data handlers
 
-                </script>
-            </div>
+                        For app composition we use tasks from [functional](https://github.com/gunins/functional) library.
+                        This app goals are composition, expressiveness and speed. Because tasks has `map` and `flatMap` methods
+                        also `through` you can combine any combinations and transformations, in any step. All of them of course is
+                        `async`.
+
+                        Models in our app collecting data from remote server or local database, convert to required structure and
+                        transfer in to next stage. Data, must be immutable, mostly everything is built in, but need to be aware,
+                        if you doing your own transformations.
+
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Widgets reusable components on page
+
+                        When you planning any application, most of the parts there is reusable. For any part in app, where is some
+                        visible functionality, usually call widgets.
+
+                        In our app any widget can be reusable in any place in app, and of course is immutable,
+                        not conflicting with other components.
+
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Controllers/Pages
+
+                        To Combine Models and widgets together, we have `Page`. Page handle relation between Models and Widgets.
+
+
+                    </script>
+                </div>
+            </section>
         </section>
         <section>
             <section>
@@ -475,11 +518,52 @@
                     </script>
                 </div>
             </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Organizing code
+
+                        There is different ways to organise, we grouped by several sections.
+
+                        - app - Main controller for application.
+                        - Models - Models related to app.
+                        - Pages - Page controllers each folder contains name of page, css file, template file which start with "_", controller usually start with capital letter, and client side javascript (we call it main.js).
+                        - Widgets -  this folder is self explained. Widget internal structure is same as for page.
+                        - lib - place for different common utilities / helpers.
+
+                        Now we have several folders for different functionality on app.
+
+                        - executors - This is folder for adapters, usually for Service Workers, Express for local test and firebase.
+                        This is only place in app, where you adding client server adapters. Everywhere else you should use same code.
+                        - rest - Folder for REST API, this is for server side only.
+                        - client - global utilities for client side javascript.
+                        - clodFunctions -  This folder is for cloud hook handling.
+
+                    </script>
+                </div>
+            </section>
+            <section>
+                <div data-markdown class="col-md-12">
+                    <script type="text/template">
+                        ## Desktop | Mobile | Tablet | Phone
+
+                        Sometimes is very difficult to unify codebase for Desktop/mobile. Good example is datepicker, mobile
+                        has perfectly built in, desktop not looking so good. We have smart platform detector, and we can dynamically load
+                        necessary files for Desktop, or mobile or tablet. Means on low end android phone you only execute javascript for
+                        mobile, not any desktop related scripts.
+                    </script>
+                </div>
+            </section>
         </section>
         <section>
             <div data-markdown class="col-md-12">
                 <script type="text/template">
                     ## Things to think before taking any framework
+
+                    Use framework or not, is based on full app requirements, but most use cases you need html/css with some basic dom
+                    handling, and nice css animations. Another requirements is charts. Most chart libraries are framework free.
+
+                    But there is some use case where framework use should be handy. Plan your app this way, where you can use framework only in necessary app parts.
 
                 </script>
             </div>
@@ -489,6 +573,15 @@
                 <script type="text/template">
                     ## Splitting app in scopes
 
+                    Sooner or later, in your app, growing functionality, this means app code will grow as well. To keep, app fast
+                    and reliable, you still have some coding limits. Solution there is instead of one big app, split to smaller apps.
+                    And when new functionality required, you can easy build new small app.
+
+                    Usually, user use some part of all app, and not all in one go. If you will split your app, with smaller ones, and
+                    use more than one Service Worker, this will make your code more modular, and keep your execution code reasonably small.
+                    But to decide where and how to splitting the app, is depending on project requirements.
+
+
                 </script>
             </div>
         </section>
@@ -497,6 +590,10 @@
                 <script type="text/template">
                     ## Older Browser Support
 
+                    Of course important is to support older browsers, but need to check how much will cost for developers.
+                    For browsers which ones are not supporting Service Workers, will use server side fetch, app will be slower,
+                    but still usable.
+
                 </script>
             </div>
         </section>
@@ -504,6 +601,23 @@
             <div data-markdown class="col-md-12">
                 <script type="text/template">
                     ## Unit Tests
+
+                    For all models, and queries related to database, I would recommend to use unit tests. Unit tests can cover up to 90%
+                    of functionality in app. Then you can decide to use manual acceptance tests or some modern tools. This part is depending on costs.
+
+                </script>
+            </div>
+        </section>
+        <section>
+            <div data-markdown class="col-md-12">
+                <script type="text/template">
+                    ## Tools
+
+                    In our development environment we are using standard development tools.
+
+                    For our build we use Gulp, bundle builder is rollup, for testing Mocha, dependencies npm,
+                    and firebase API for deploy.
+
 
                 </script>
             </div>
